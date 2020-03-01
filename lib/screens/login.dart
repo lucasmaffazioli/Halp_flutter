@@ -21,44 +21,48 @@ class Login extends StatelessWidget {
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text(
-                  'HALP.',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 46,
-                    fontFamily: 'MPLUSRounded1c',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '''HALP existe para você 
+                Column(
+                  children: <Widget>[
+                    Text(
+                      'HALP.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 46,
+                        fontFamily: 'MPLUSRounded1c',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '''HALP existe para você 
 encontrar todas as 
 respostas para sua vida''',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontFamily: 'MPLUSRounded1c',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Flexible(
-                  child: TextField(
-                    // autofocus: true,
-                    controller: loginController,
-                  ),
-                ),
-                MaterialButton(
-                  child: Text('Entrar'),
-                  onPressed: () {
-                    print(loginController.text);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FeedScreen(),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontFamily: 'MPLUSRounded1c',
+                        fontWeight: FontWeight.bold,
                       ),
-                    );
-                  },
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: CustomPaint(
+                    painter: BluePainter(),
+                    child: MaterialButton(
+                      child: Text('Entrar'),
+                      onPressed: () {
+                        print(loginController.text);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FeedScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -78,26 +82,38 @@ class BluePainter extends CustomPainter {
 
     Path mainBackground = Path();
     mainBackground.addRect(Rect.fromLTRB(0, 0, width, height));
-    paint.color = Colors.blue.shade700;
+    // paint.color = Colors.red;
+    paint.color = Colors.transparent;
     canvas.drawPath(mainBackground, paint);
 
     Path ovalPath = Path();
     // Start paint from 20% height to the left
-    ovalPath.moveTo(0, height * 0.2);
+    ovalPath.moveTo(0, 25);
+    // ovalPath.moveTo(15, 25);
+    // ovalPath.moveTo(50, 25);
+    // ovalPath.moveTo(0, height * 0.2);
 
     // paint a curve from current position to middle of the screen
-    ovalPath.quadraticBezierTo(width * 0.45, height * 0.25, width * 0.51, height * 0.5);
+    ovalPath.quadraticBezierTo(width * 0.07, -10, width * 0.21, 25);
+    ovalPath.quadraticBezierTo(width * 0.35, 60, width * 0.47, 25);
+    ovalPath.quadraticBezierTo(width * 0.60, -8, width * 0.87, 35);
+    ovalPath.quadraticBezierTo(width * 0.95, 50, width, 25);
+
+    // ovalPath.moveTo(width * 0.61, -10);
+    // ovalPath.quadraticBezierTo(width * 0.45, height * 0.25, width * 0.61, -10);
 
     // Paint a curve from current position to bottom left of screen at width * 0.1
-    ovalPath.quadraticBezierTo(width * 0.58, height * 0.8, width * 0.1, height);
+    // ovalPath.quadraticBezierTo(width * 0.58, height * 0.8, width * 0.75, height);
 
     // draw remaining line to bottom left side
+    ovalPath.lineTo(width, height);
     ovalPath.lineTo(0, height);
 
     // Close line to reset it back
     ovalPath.close();
 
-    paint.color = Colors.blue.shade600;
+    paint.color = Colors.white;
+    // paint.color = Colors.blue.shade600;
     canvas.drawPath(ovalPath, paint);
   }
 
