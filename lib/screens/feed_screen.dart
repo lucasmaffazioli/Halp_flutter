@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:halp/widgets/video_block_widget.dart';
+import 'package:halp/components/video_block_widget.dart';
 
 class FeedScreen extends StatelessWidget {
   @override
