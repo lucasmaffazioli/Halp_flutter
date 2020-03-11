@@ -72,10 +72,10 @@ flutter:
   fonts:
     - family: MPLUSRounded1c
       fonts:
-        - asset: assets\fonts\MPLUSRounded1c-Black.ttf
-        - asset: assets\fonts\MPLUSRounded1c-Bold.ttf
-        - asset: assets\fonts\MPLUSRounded1c-ExtraBold.ttf
-        - asset: assets\fonts\MPLUSRounded1c-Light.ttf
-        - asset: assets\fonts\MPLUSRounded1c-Medium.ttf
-        - asset: assets\fonts\MPLUSRounded1c-Regular.ttf
-        - asset: assets\fonts\MPLUSRounded1c-Thin.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Black.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Bold.ttf
+        - asset: assets/fonts/MPLUSRounded1c-ExtraBold.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Light.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Medium.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Regular.ttf
+        - asset: assets/fonts/MPLUSRounded1c-Thin.ttf

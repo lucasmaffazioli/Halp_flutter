@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:halp/components/big_button.dart';
+import 'package:halp/components/input_register.dart';
 import 'package:halp/components/waves_separator.dart';
 // import 'package:halp/screens/feed_screen.dart';
 import 'package:halp/misc/constants.dart';
@@ -10,145 +11,61 @@ class Login extends StatefulWidget {
 }
 
 enum ScreenStage { welcome, login, signUp }
-ScreenStage currentStage = ScreenStage.welcome;
-ScreenStage lastStage;
+final _validCharacters = RegExp(r"/^WS{1,2}:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:56789/i");
+final _validCharactersEmail = RegExp(r"/^WS{1,2}:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:56789/i");
 
 class _LoginState extends State<Login> {
   final loginController = TextEditingController();
 
+  ScreenStage currentStage = ScreenStage.welcome;
+  ScreenStage lastStage;
+
   void setScreenStage(ScreenStage newStage) {
+    print(newStage);
     setState(() {
       lastStage = currentStage;
       currentStage = newStage;
     });
   }
 
-  // Widget getInput() {
-  //   if (currentStage == ScreenStage.welcome) {
-  //     return Container(
-  //       child: CustomPaint(
-  //         painter: WavesSeparator(),
-  //         child: Padding(
-  //           padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
-  //           child: Column(
-  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //             crossAxisAlignment: CrossAxisAlignment.stretch,
-  //             children: <Widget>[
-  //               BigButton(
-  //                 'Login',
-  //                 onPressed: () {
-  //                   setScreenStage(ScreenStage.login);
-  //                 },
-  //               ),
-  //               BigButton(
-  //                 'Sign up',
-  //                 filled: true,
-  //                 onPressed: () {
-  //                   setScreenStage(ScreenStage.signUp);
-  //                 },
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     );
-  //   }
-  //   if (currentStage == ScreenStage.login) {
-  //     return Container(
-  //       child: CustomPaint(
-  //         painter: WavesSeparator(),
-  //         child: Padding(
-  //           padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
-  //           child: Column(
-  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //             crossAxisAlignment: CrossAxisAlignment.stretch,
-  //             children: <Widget>[
-  //               BigButton(
-  //                 'Login',
-  //                 onPressed: () {
-  //                   setScreenStage(ScreenStage.login);
-  //                   // Navigator.push(
-  //                   //   context,
-  //                   //   MaterialPageRoute(
-  //                   //     builder: (context) => FeedScreen(),
-  //                   //   ),
-  //                   // );
-  //                 },
-  //               ),
-  //               BigButton(
-  //                 'Sign up',
-  //                 filled: true,
-  //                 onPressed: () {
-  //                   setScreenStage(ScreenStage.signUp);
-  //                   // Navigator.push(
-  //                   //   context,
-  //                   //   MaterialPageRoute(
-  //                   //     builder: (context) => FeedScreen(),
-  //                   //   ),
-  //                   // );
-  //                 },
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     );
-  //   }
-  //   if (currentStage == ScreenStage.signUp) {}
-  //   return Container(
-  //     child: CustomPaint(
-  //       painter: WavesSeparator(),
-  //       child: Padding(
-  //         padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
-  //         child: Column(
-  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //           crossAxisAlignment: CrossAxisAlignment.stretch,
-  //           children: <Widget>[
-  //             // BigButton(
-  //             //   'Login',
-  //             //   onPressed: () {
-  //             //     setScreenStage(ScreenStage.login);
-  //             //     // Navigator.push(
-  //             //     //   context,
-  //             //     //   MaterialPageRoute(
-  //             //     //     builder: (context) => FeedScreen(),
-  //             //     //   ),
-  //             //     // );
-  //             //   },
-  //             // ),
-  //             BigButton(
-  //               'Sign up',
-  //               filled: true,
-  //               onPressed: () {
-  //                 setScreenStage(ScreenStage.signUp);
-  //                 // Navigator.push(
-  //                 //   context,
-  //                 //   MaterialPageRoute(
-  //                 //     builder: (context) => FeedScreen(),
-  //                 //   ),
-  //                 // );
-  //               },
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Future<bool> _onBackPressed() {
-    print('backPressed');
     setState(() {
       currentStage = lastStage;
     });
+  }
+
+  getInput() {
+    switch (currentStage) {
+      case ScreenStage.welcome:
+        {
+          return _WelcomeComponent(
+            setScreen: setScreenStage,
+          );
+        }
+        break;
+
+      case ScreenStage.login:
+        {
+          return _LoginComponent();
+        }
+        break;
+
+      case ScreenStage.signUp:
+        {
+          return _SignUpComponent();
+        }
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        primaryColor: mainPurple,
+        accentColor: secundaryPurple,
+        cursorColor: secundaryPurple,
         fontFamily: mainFont,
-        // fontWeight: FontWeight.normal,q
       ),
       home: WillPopScope(
         onWillPop: _onBackPressed,
@@ -179,20 +96,21 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 36),
-                          child: Text(
-                            '''HALP existe para você 
+                        if (currentStage != ScreenStage.signUp)
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 36),
+                            child: Text(
+                              '''HALP existe para você 
 encontrar todas as 
 respostas para sua vida''',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 26,
-                              fontFamily: mainFont,
-                              fontWeight: FontWeight.bold,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 26,
+                                fontFamily: mainFont,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -201,14 +119,10 @@ respostas para sua vida''',
                       painter: WavesSeparator(),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
-                        child: _Action(
-                          setScreen: setScreenStage,
-                        ),
+                        child: getInput(),
                       ),
                     ),
                   ),
-                  // getInput(),
-                  // getInput(),
                 ],
               ),
             ),
@@ -219,9 +133,9 @@ respostas para sua vida''',
   }
 }
 
-class _Action extends StatelessWidget {
+class _WelcomeComponent extends StatelessWidget {
   final Function setScreen;
-  _Action({this.setScreen});
+  _WelcomeComponent({this.setScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -241,6 +155,127 @@ class _Action extends StatelessWidget {
           onPressed: () {
             setScreen(ScreenStage.signUp);
           },
+        ),
+      ],
+    );
+  }
+}
+
+class _SignUpComponent extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            InputRegister(
+              label: 'Name',
+              icon: Icon(Icons.mail),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if (!_validCharacters.hasMatch(value)) {
+                  return 'Only alphanumeric characters are permited!';
+                }
+                return null;
+              },
+            ),
+            InputRegister(
+              label: 'E-mail',
+              icon: Icon(Icons.mail),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if (!_validCharactersEmail.hasMatch(value)) {
+                  return 'Wrong format!';
+                }
+                return null;
+              },
+            ),
+            InputRegister(
+              label: 'Password',
+              icon: Icon(Icons.mail),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if (!_validCharactersEmail.hasMatch(value)) {
+                  return 'Wrong format!';
+                }
+                return null;
+              },
+            ),
+            InputRegister(
+              label: 'Birthday',
+              icon: Icon(Icons.mail),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if (!_validCharactersEmail.hasMatch(value)) {
+                  return 'Wrong format!';
+                }
+                return null;
+              },
+            ),
+            BigButton(
+              'Register',
+              filled: true,
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  print('validated!');
+                }
+              },
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+            //   child: RaisedButton(
+            //     onPressed: () {
+            //       // Validate will return true if the form is valid, or false if
+            //       // the form is invalid.
+            //       if (_formKey.currentState.validate()) {
+            //         // Process data.
+            //       }
+            //     },
+            //     child: Text('Submit'),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
+    // Column(
+    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //   crossAxisAlignment: CrossAxisAlignment.stretch,
+    //   children: <Widget>[
+    //     BigButton(
+    //       'Sign up',
+    //       filled: true,
+    //       onPressed: () {},
+    //     ),
+    //   ],
+    // );
+  }
+}
+
+class _LoginComponent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        BigButton(
+          'Login',
+          filled: true,
+          onPressed: () {},
         ),
       ],
     );
