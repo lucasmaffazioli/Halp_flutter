@@ -60,71 +60,63 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: mainPurple,
-        accentColor: secundaryPurple,
-        cursorColor: secundaryPurple,
-        fontFamily: mainFont,
-      ),
-      home: WillPopScope(
-        onWillPop: _onBackPressed,
-        child: Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [mainPurple, secundaryPurple])),
-            child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          'HALP.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 46,
-                            fontFamily: mainFont,
-                            fontWeight: FontWeight.bold,
-                          ),
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [mainPurple, secundaryPurple])),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text(
+                        'HALP.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 46,
+                          fontFamily: mainFont,
+                          fontWeight: FontWeight.bold,
                         ),
-                        if (currentStage == ScreenStage.welcome)
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 36),
-                            child: Text(
-                              '''HALP existe para você 
+                      ),
+                      if (currentStage == ScreenStage.welcome)
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 36),
+                          child: Text(
+                            '''HALP existe para você 
 encontrar todas as 
 respostas para sua vida''',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 26,
-                                fontFamily: mainFont,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 26,
+                              fontFamily: mainFont,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                      ],
+                        ),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: CustomPaint(
+                    painter: WavesSeparator(),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
+                      child: getInput(),
                     ),
                   ),
-                  Container(
-                    child: CustomPaint(
-                      painter: WavesSeparator(),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
-                        child: getInput(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -253,6 +245,7 @@ class _SignUpComponent extends StatelessWidget {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   print('validated!');
+                  Navigator.pushNamed(context, '/feed');
                 }
               },
             ),
@@ -282,9 +275,9 @@ class _LoginComponent extends StatelessWidget {
                 if (value.isEmpty) {
                   return 'Please enter some text';
                 }
-                if (!_validCharacters.hasMatch(value)) {
-                  return 'Only alphanumeric characters are permited!';
-                }
+                // if (!_validCharacters.hasMatch(value)) {
+                //   return 'Only alphanumeric characters are permited!';
+                // }
                 return null;
               },
             ),
@@ -295,9 +288,9 @@ class _LoginComponent extends StatelessWidget {
                 if (value.isEmpty) {
                   return 'Please enter some text';
                 }
-                if (!_validCharactersEmail.hasMatch(value)) {
-                  return 'Wrong format!';
-                }
+                // if (!_validCharactersEmail.hasMatch(value)) {
+                //   return 'Wrong format!';
+                // }
                 return null;
               },
             ),
@@ -307,6 +300,7 @@ class _LoginComponent extends StatelessWidget {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   print('validated!');
+                  Navigator.pushNamed(context, '/feed');
                 }
               },
             ),
