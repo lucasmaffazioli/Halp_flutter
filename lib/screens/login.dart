@@ -96,7 +96,7 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        if (currentStage != ScreenStage.signUp)
+                        if (currentStage == ScreenStage.welcome)
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 36),
                             child: Text(
@@ -173,6 +173,28 @@ class _SignUpComponent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            // Container(
+            //   height: 50,
+            //   color: Colors.amber[600],
+            //   child: const Center(child: Text('Entry A')),
+            // ),
+            // Container(
+            //   height: 50,
+            //   color: Colors.amber[500],
+            //   child: const Center(child: Text('Entry B')),
+            // ),
+            // Container(
+            //   height: 50,
+            //   color: Colors.amber[100],
+            //   child: const Center(child: Text('Entry C')),
+            // ),
+            Center(
+              child: Icon(
+                Icons.add_circle_outline,
+                color: Colors.grey[500],
+                size: 55,
+              ),
+            ),
             InputRegister(
               label: 'Name',
               icon: Icon(Icons.mail),
@@ -213,7 +235,7 @@ class _SignUpComponent extends StatelessWidget {
               },
             ),
             InputRegister(
-              label: 'Birthday',
+              label: 'Age',
               icon: Icon(Icons.mail),
               validator: (value) {
                 if (value.isEmpty) {
@@ -234,50 +256,63 @@ class _SignUpComponent extends StatelessWidget {
                 }
               },
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 16.0),
-            //   child: RaisedButton(
-            //     onPressed: () {
-            //       // Validate will return true if the form is valid, or false if
-            //       // the form is invalid.
-            //       if (_formKey.currentState.validate()) {
-            //         // Process data.
-            //       }
-            //     },
-            //     child: Text('Submit'),
-            //   ),
-            // ),
           ],
         ),
       ),
     );
-    // Column(
-    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //   crossAxisAlignment: CrossAxisAlignment.stretch,
-    //   children: <Widget>[
-    //     BigButton(
-    //       'Sign up',
-    //       filled: true,
-    //       onPressed: () {},
-    //     ),
-    //   ],
-    // );
   }
 }
 
 class _LoginComponent extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        BigButton(
-          'Login',
-          filled: true,
-          onPressed: () {},
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            InputRegister(
+              label: 'User',
+              icon: Icon(Icons.mail),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if (!_validCharacters.hasMatch(value)) {
+                  return 'Only alphanumeric characters are permited!';
+                }
+                return null;
+              },
+            ),
+            InputRegister(
+              label: 'Password',
+              icon: Icon(Icons.mail),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                if (!_validCharactersEmail.hasMatch(value)) {
+                  return 'Wrong format!';
+                }
+                return null;
+              },
+            ),
+            BigButton(
+              'Login',
+              filled: true,
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  print('validated!');
+                }
+              },
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
