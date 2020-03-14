@@ -4,6 +4,7 @@ import 'package:halp/components/input_register.dart';
 import 'package:halp/components/waves_separator.dart';
 // import 'package:halp/screens/feed_screen.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:flutter/services.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -60,6 +61,11 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   // systemNavigationBarColor: Colors.blue,
+    //   statusBarColor: secundaryPurple,
+    // ));
+
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(

@@ -7,6 +7,7 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: mainPurple,
           accentColor: secundaryPurple,
@@ -18,6 +19,7 @@ class FeedScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: mainWhite,
+          brightness: Brightness.light,
           // elevation: ,
           title: Text(
             'HALP.',
@@ -29,21 +31,17 @@ class FeedScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: ListView(
-            children: <Widget>[
-              PostFeed(),
-              Container(
-                child: Text('aaaaaaa'),
-                // child: VideoBlock(),
-              ),
-              Container(
-                child: Text('aaaaaaa'),
-                // child: VideoBlock(),
-              ),
-            ],
-          ),
+        //
+        //
+        //   BODY
+        //
+        //
+        body: ListView(
+          children: <Widget>[
+            PostFeed(),
+            PostFeed(),
+           
+          ],
         ),
       ),
     );
