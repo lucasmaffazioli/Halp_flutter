@@ -30,10 +30,18 @@ class PostFeed extends StatelessWidget {
       statusBarColor: mainWhite,
     ));
     return Container(
-      padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          Text(
+            title,
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 26,
+              fontFamily: 'RobotoCondensed',
+            ),
+          ),
           // IntrinsicHeight( // Removido pois bugava o widget INK
           // child:
           Row(
@@ -154,14 +162,7 @@ class PostFeed extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            title,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 26,
-              fontFamily: 'RobotoCondensed',
-            ),
-          ),
+
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Divider(
