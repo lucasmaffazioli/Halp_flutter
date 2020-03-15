@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:halp/components/post_feed.dart';
+import 'package:halp/components/tag.dart';
 // import 'package:halp/components/video_block_widget.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/misc/enum_tag_colors.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:provider/provider.dart';
@@ -47,8 +49,18 @@ class FeedScreen extends StatelessWidget {
         //
         body: ListView(
           children: <Widget>[
-            PostFeed(),
-            PostFeed(),
+            PostFeed(
+                title: 'Como ficar bonitão em uma rave?',
+                userName: 'Ayaki Nanami',
+                imagePreview: Image.asset('assets/images/mockup_video_Ayaki.jpg'),
+                comments: 2,
+                hearts: 25),
+            PostFeed(
+                title: 'Como ter mais inscritos no YouTube?',
+                userName: 'Jape Paul',
+                imagePreview: Image.asset('assets/images/mockup_video_Jake.jpg'),
+                comments: 88,
+                hearts: 1930),
           ],
         ),
         bottomNavigationBar: BottomAppBar(

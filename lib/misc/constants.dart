@@ -10,3 +10,11 @@ const Color mainGrey = Color(0xFF9E9E9E);
 const LinearGradient buttonMainGradient = LinearGradient(
   colors: <Color>[Color(0xFF8400DB), Color(0xFF610084)],
 );
+const LinearGradient tagMainGradient = LinearGradient(
+  begin: Alignment.centerLeft,
+  end: Alignment.bottomRight,
+  colors: <Color>[
+    Color(0xFF9700EA),
+    Color(0xFFCB6BFF),
+  ],
+);

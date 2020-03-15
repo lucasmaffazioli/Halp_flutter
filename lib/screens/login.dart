@@ -29,10 +29,12 @@ class _LoginState extends State<Login> {
     });
   }
 
-  Future<bool> _onBackPressed() {
+  Future<bool> _onBackPressed() async {
     setState(() {
       currentStage = lastStage;
     });
+
+    return true;
   }
 
   getInput() {
