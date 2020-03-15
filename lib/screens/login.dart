@@ -327,7 +327,8 @@ class _LoginComponent extends StatelessWidget {
                   ).setLoggedUser(_user);
 
                   // LoginModel().setLoggedUser(_user);
-                  Navigator.pushNamed(context, '/feed');
+                  Navigator.pushNamed(
+                      context, '/feed'); // TODO use routeName inside object or something
                 }
               },
             ),

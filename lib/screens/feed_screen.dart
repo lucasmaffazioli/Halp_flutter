@@ -18,6 +18,7 @@ class FeedScreen extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
         children: <Widget>[
           PostFeed(
+              id: 0,
               title: 'Como ficar bonitão em uma rave?',
               userName: 'Ayaki Nanami',
               imagePreview: Image.asset('assets/images/mockup_video_Ayaki.jpg'),
@@ -26,6 +27,7 @@ class FeedScreen extends StatelessWidget {
               comments: 2,
               hearts: 25),
           PostFeed(
+              id: 1,
               title: 'Como ter mais inscritos no YouTube?',
               userName: 'Jake Paul',
               imagePreview: Image.asset('assets/images/mockup_video_Jake.jpg'),
@@ -34,6 +36,7 @@ class FeedScreen extends StatelessWidget {
               comments: 88,
               hearts: 1930),
           PostFeed(
+              id: 2,
               title: 'Devo casar com ela?!',
               userName: 'Jake Paul',
               imagePreview: Image.asset('assets/images/mockup_video_Jake_2.jpg'),
