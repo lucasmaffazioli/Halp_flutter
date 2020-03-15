@@ -1,10 +1,10 @@
+import 'package:halp/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/big_button.dart';
 import 'package:halp/components/input_register.dart';
 import 'package:halp/components/waves_separator.dart';
-// import 'package:halp/screens/feed_screen.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -265,6 +265,9 @@ class _SignUpComponent extends StatelessWidget {
 class _LoginComponent extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
+  String _user;
+  String _password;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -277,6 +280,9 @@ class _LoginComponent extends StatelessWidget {
             InputRegister(
               label: 'User',
               icon: Icon(Icons.mail),
+              onSaved: (String newUser) {
+                _user = newUser;
+              },
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter some text';
@@ -290,6 +296,9 @@ class _LoginComponent extends StatelessWidget {
             InputRegister(
               label: 'Password',
               icon: Icon(Icons.mail),
+              onSaved: (String newPassword) {
+                _password = newPassword;
+              },
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter some text';
@@ -305,7 +314,17 @@ class _LoginComponent extends StatelessWidget {
               filled: true,
               onPressed: () {
                 if (_formKey.currentState.validate()) {
+                  _formKey.currentState.save(); // Save our form now.
                   print('validated!');
+                  print(_user);
+                  print(_password);
+
+                  Provider.of<LoginModel>(
+                    context,
+                    listen: false,
+                  ).setLoggedUser(_user);
+
+                  // LoginModel().setLoggedUser(_user);
                   Navigator.pushNamed(context, '/feed');
                 }
               },

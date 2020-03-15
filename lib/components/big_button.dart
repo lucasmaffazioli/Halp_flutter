@@ -10,8 +10,6 @@ class BigButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget decoration() {}
-
     return Padding(
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
         child: RaisedButton(

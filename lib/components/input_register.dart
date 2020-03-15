@@ -4,11 +4,13 @@ class InputRegister extends StatelessWidget {
   final String label;
   final Icon icon;
   final Function validator;
+  final Function onSaved;
 
   InputRegister({
     @required this.label,
     @required this.icon,
     this.validator,
+    this.onSaved,
   });
 
   @override
@@ -20,10 +22,7 @@ class InputRegister extends StatelessWidget {
           hintText: 'What do people call you?',
           labelText: label,
         ),
-        onSaved: (String value) {
-          // This optional block of code can be used to run
-          // code when the user saves the form.
-        },
+        onSaved: onSaved,
         validator: validator,
       ),
     );
