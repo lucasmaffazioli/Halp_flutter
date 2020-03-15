@@ -53,14 +53,26 @@ class FeedScreen extends StatelessWidget {
                 title: 'Como ficar bonitão em uma rave?',
                 userName: 'Ayaki Nanami',
                 imagePreview: Image.asset('assets/images/mockup_video_Ayaki.jpg'),
+                imageAvatar: AssetImage('assets/images/mockup_ayaki_avatar.png'),
+                tags: ['Rave', 'Moda', 'Lifestyle'],
                 comments: 2,
                 hearts: 25),
             PostFeed(
                 title: 'Como ter mais inscritos no YouTube?',
-                userName: 'Jape Paul',
+                userName: 'Jake Paul',
                 imagePreview: Image.asset('assets/images/mockup_video_Jake.jpg'),
+                imageAvatar: AssetImage('assets/images/mockup_jake_avatar.jpg'),
+                tags: ['YouTube', 'Empreendedorismo'],
                 comments: 88,
                 hearts: 1930),
+            PostFeed(
+                title: 'Devo casar com ela?!',
+                userName: 'Jake Paul',
+                imagePreview: Image.asset('assets/images/mockup_video_Jake_2.jpg'),
+                imageAvatar: AssetImage('assets/images/mockup_jake_avatar.jpg'),
+                tags: ['Popstar', 'Casamento', 'Dicas pessoais'],
+                comments: 50,
+                hearts: 1201),
           ],
         ),
         bottomNavigationBar: BottomAppBar(
@@ -87,8 +99,7 @@ class FeedScreen extends StatelessWidget {
               CircleAvatar(
                 maxRadius: 16,
                 minRadius: 16,
-                backgroundImage: NetworkImage(
-                    'https://instagram.fcxj3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/61833265_363511360967887_3520754021616844800_n.jpg?_nc_ht=instagram.fcxj3-1.fna.fbcdn.net&_nc_ohc=fmx_BBx_UxIAX-pgWva&oh=50a38600d596a7b24ca6958672f42fde&oe=5EA14E2B'),
+                backgroundImage: AssetImage('assets/images/mockup_jake_avatar.jpg'),
               ),
             ],
           ),

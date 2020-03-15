@@ -13,11 +13,15 @@ class PostFeed extends StatelessWidget {
   final int hearts;
   final int comments;
   final Image imagePreview;
+  final AssetImage imageAvatar;
+  final List<String> tags;
   PostFeed(
       {@required this.title,
       @required this.userName,
       @required this.hearts,
       @required this.imagePreview,
+      @required this.imageAvatar,
+      @required this.tags,
       @required this.comments});
 
   @override
@@ -28,6 +32,7 @@ class PostFeed extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // IntrinsicHeight( // Removido pois bugava o widget INK
           // child:
@@ -35,10 +40,54 @@ class PostFeed extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 flex: 7,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
-                  child: imagePreview,
-                ),
+                child: Stack(children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(24),
+                    child: imagePreview,
+                  ),
+                  Positioned.fill(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: FractionalOffset.bottomCenter,
+                        child: Row(
+                          // crossAxisAlignment: CrossAxisAlignment.end,
+                          // mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundImage: imageAvatar,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              userName,
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                shadows: [
+                                  // Shadow(
+                                  //   blurRadius: 2,
+                                  //   // color: Color(0xFF8000FF),
+                                  //   color: Colors.black,
+                                  //   offset: Offset(0, 0),
+                                  // ),
+                                  Shadow(
+                                    blurRadius: 10,
+                                    color: Colors.blue,
+                                    offset: Offset(0, 3.0),
+                                  ),
+                                ],
+                                color: mainWhite,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
               ),
               //
               //   SECOND COLUMN
@@ -70,24 +119,30 @@ class PostFeed extends StatelessWidget {
                               .withoutFractionDigits,
                         ),
                         Wrap(
-                          alignment: WrapAlignment.spaceAround,
-                          spacing: 5, // gap between adjacent chips
-                          runSpacing: 4, // gap between lines
-                          children: <Tag>[
-                            Tag(
-                              'Rave',
-                              onPressed: () {},
+                            alignment: WrapAlignment.spaceAround,
+                            spacing: 5, // gap between adjacent chips
+                            runSpacing: 4, // gap between lines
+                            children: <Tag>[
+                              for (var tag in tags)
+                                Tag(
+                                  tag,
+                                  onPressed: () {},
+                                )
+                            ]
+                            //   Tag(
+                            //     'Rave',
+                            //     onPressed: () {},
+                            //   ),
+                            //   Tag(
+                            //     'Moda',
+                            //     onPressed: () {},
+                            //   ),
+                            //   Tag(
+                            //     'Lifestyle',
+                            //     onPressed: () {},
+                            //   ),
+                            // ],
                             ),
-                            Tag(
-                              'Moda',
-                              onPressed: () {},
-                            ),
-                            Tag(
-                              'Lifestyle',
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
                         ActionButton(
                           Icons.reply,
                           onPressed: () {},
@@ -101,6 +156,7 @@ class PostFeed extends StatelessWidget {
           ),
           Text(
             title,
+            textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: 26,
               fontFamily: 'RobotoCondensed',
