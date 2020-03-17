@@ -32,7 +32,7 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:halp/components/base_layout.dart';
+// import 'package:halp/components/base_layout.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:halp/screens/feed_screen.dart';
 import 'package:halp/screens/login.dart';
@@ -43,7 +43,7 @@ import 'package:provider/provider.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final _navigatorKey = GlobalKey<NavigatorState>();
+  // final _navigatorKey = GlobalKey<NavigatorState>();
 
   // This widget is the root of your application.
   @override
@@ -66,49 +66,49 @@ class MyApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: mainWhite,
         ),
-        home: BaseLayout(
-          // currentUser: Provider.of<LoginModel>(
-          //   context,
-          //   listen: false,
-          // ).getCurrentUser(),
-          body: Navigator(
-            key: _navigatorKey,
-            initialRoute: '/',
-            onGenerateRoute: (RouteSettings settings) {
-              WidgetBuilder builder;
-              // Manage your route names here
-              switch (settings.name) {
-                case '/':
-                  builder = (BuildContext context) => Login();
-                  break;
-                case '/feed':
-                  builder = (BuildContext context) => FeedScreen();
-                  break;
-                case '/post':
-                  builder = (BuildContext context) => PostScreen(
-                        postId: ModalRoute.of(context).settings.arguments,
-                      );
-                  break;
-                default:
-                  throw Exception('Invalid route: ${settings.name}');
-              }
-              // You can also return a PageRouteBuilder and
-              // define custom transitions between pages
-              return MaterialPageRoute(
-                builder: builder,
-                settings: settings,
-              );
-            },
-          ),
-        ),
-        // initialRoute: '/',
-        // routes: {
-        //   '/': (context) => Login(),
-        //   '/feed': (context) => FeedScreen(),
-        //   '/post': (context) => PostScreen(
-        //         postId: ModalRoute.of(context).settings.arguments,
-        //       ),
-        // },
+        // home: BaseLayout(
+        // currentUser: Provider.of<LoginModel>(
+        //   context,
+        //   listen: false,
+        // ).getCurrentUser(),
+        //   body: Navigator(
+        //     key: _navigatorKey,
+        //     initialRoute: '/',
+        //     onGenerateRoute: (RouteSettings settings) {
+        //       WidgetBuilder builder;
+        //       // Manage your route names here
+        //       switch (settings.name) {
+        //         case '/':
+        //           builder = (BuildContext context) => Login();
+        //           break;
+        //         case '/feed':
+        //           builder = (BuildContext context) => FeedScreen();
+        //           break;
+        //         case '/post':
+        //           builder = (BuildContext context) => PostScreen(
+        //                 postId: ModalRoute.of(context).settings.arguments,
+        //               );
+        //           break;
+        //         default:
+        //           throw Exception('Invalid route: ${settings.name}');
+        //       }
+        //       // You can also return a PageRouteBuilder and
+        //       // define custom transitions between pages
+        //       return MaterialPageRoute(
+        //         builder: builder,
+        //         settings: settings,
+        //       );
+        //     },
+        //   ),
+        // ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Login(),
+          '/feed': (context) => FeedScreen(),
+          '/post': (context) => PostScreen(
+                postId: ModalRoute.of(context).settings.arguments,
+              ),
+        },
       ),
     );
   }

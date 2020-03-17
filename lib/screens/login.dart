@@ -33,8 +33,6 @@ class _LoginState extends State<Login> {
     setState(() {
       currentStage = lastStage;
     });
-
-    // return true;
   }
 
   getInput() {
@@ -66,66 +64,70 @@ class _LoginState extends State<Login> {
     //   statusBarColor: secundaryPurple,
     // ));
 
-    return WillPopScope(
-      onWillPop: _onBackPressed,
-      child: Container(
-        // return Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [mainPurple, secundaryPurple])),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text(
-                      'HALP.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 46,
-                        fontFamily: mainFont,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    if (currentStage == ScreenStage.welcome)
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 36),
-                        child: Text(
-                          '''HALP existe para você 
-encontrar todas as 
-respostas para sua vida''',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 26,
-                            fontFamily: mainFont,
-                            fontWeight: FontWeight.bold,
-                          ),
+    return Scaffold(
+      // child: Scaffold(
+      body: WillPopScope(
+        onWillPop: _onBackPressed,
+        child: Container(
+          // return Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [mainPurple, secundaryPurple])),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text(
+                        'HALP.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 46,
+                          fontFamily: mainFont,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                  ],
-                ),
-              ),
-              Container(
-                child: CustomPaint(
-                  painter: WavesSeparator(),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
-                    child: getInput(),
+                      if (currentStage == ScreenStage.welcome)
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 36),
+                          child: Text(
+                            '''HALP existe para você 
+encontrar todas as 
+respostas para sua vida''',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 26,
+                              fontFamily: mainFont,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  child: CustomPaint(
+                    painter: WavesSeparator(),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 60, 0, 25),
+                      child: getInput(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+      // ),
     );
   }
 }
