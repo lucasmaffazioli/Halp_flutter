@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 
 class LoginModel extends ChangeNotifier {
-  String _user;
+  String _user = '';
 
   void setLoggedUser(String newUser) {
     _user = newUser;
