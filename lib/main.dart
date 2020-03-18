@@ -32,7 +32,6 @@
 // }
 
 import 'package:flutter/material.dart';
-// import 'package:halp/components/base_layout.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:halp/screens/feed_screen.dart';
 import 'package:halp/screens/login.dart';
@@ -105,8 +104,9 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Login(),
           '/feed': (context) => FeedScreen(),
+          // '/post': (context) => PostScreen(
           '/post': (context) => PostScreen(
-                postId: ModalRoute.of(context).settings.arguments,
+                arguments: ModalRoute.of(context).settings.arguments,
               ),
         },
       ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:halp/components/base_layout.dart';
+import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/components/post_feed.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:provider/provider.dart';
 
 class FeedScreen extends StatelessWidget {
+  static const routeName = '/passArguments'; // TODO implement named route
+
   @override
   Widget build(BuildContext context) {
     String _currentUser = Provider.of<LoginModel>(
@@ -13,7 +15,7 @@ class FeedScreen extends StatelessWidget {
     ).getCurrentUser();
     print('current user is ' + _currentUser);
 
-    return BaseLayout(
+    return BaseScaffold(
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
         children: <Widget>[

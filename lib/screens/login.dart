@@ -29,10 +29,11 @@ class _LoginState extends State<Login> {
     });
   }
 
-  Future<bool> _onBackPressed() {
+  Future<bool> _onBackPressed() async {
     setState(() {
       currentStage = lastStage;
     });
+    return false;
   }
 
   getInput() {
@@ -65,11 +66,9 @@ class _LoginState extends State<Login> {
     // ));
 
     return Scaffold(
-      // child: Scaffold(
       body: WillPopScope(
         onWillPop: _onBackPressed,
         child: Container(
-          // return Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -127,7 +126,6 @@ respostas para sua vida''',
           ),
         ),
       ),
-      // ),
     );
   }
 }

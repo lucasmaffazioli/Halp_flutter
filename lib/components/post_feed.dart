@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:halp/components/action_button.dart';
 import 'package:halp/components/icon_label.dart';
 import 'package:halp/components/tag.dart';
+import 'package:halp/misc/arguments_post_screen.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/services.dart';
@@ -52,7 +53,19 @@ class PostFeed extends StatelessWidget {
                 flex: 7,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/post', arguments: id);
+                    Navigator.pushNamed(
+                      context,
+                      '/post',
+                      arguments: ArgumentsPostScreen(
+                          id: id,
+                          title: title,
+                          userName: userName,
+                          hearts: hearts,
+                          imagePreview: imagePreview,
+                          imageAvatar: imageAvatar,
+                          tags: tags,
+                          comments: comments),
+                    );
                   },
                   child: Stack(
                     children: <Widget>[
