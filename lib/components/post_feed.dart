@@ -2,6 +2,7 @@ import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/action_button.dart';
 import 'package:halp/components/icon_label.dart';
+import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/misc/arguments_post_screen.dart';
 import 'package:halp/misc/constants.dart';
@@ -69,8 +70,8 @@ class PostFeed extends StatelessWidget {
                   },
                   child: Stack(
                     children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(24),
+                      ImageFormatter(
+                        height: 400,
                         child: imagePreview,
                       ),
                       Positioned.fill(
@@ -125,7 +126,7 @@ class PostFeed extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: SizedBox(
-                  height: 450,
+                  height: 400,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Column(

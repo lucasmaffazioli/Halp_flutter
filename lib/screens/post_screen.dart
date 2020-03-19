@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:halp/components/action_button.dart';
 import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/components/icon_label.dart';
+import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/post_card.dart';
 import 'package:halp/components/post_full_card.dart';
 import 'package:halp/components/tag.dart';
@@ -125,7 +126,9 @@ class PostScreen extends StatelessWidget {
                           userName: 'ATHLEAN-X™',
                           title: 'Primeiro treine seus abs!',
                           hearts: 301,
-                          child: Image.asset('assets/images/mockup_video_Ayaki.jpg'),
+                          child: ImageFormatter(
+                              height: 400,
+                              child: Image.asset('assets/images/mockup_video_Ayaki.jpg')),
                         ),
                       ],
                     ),
