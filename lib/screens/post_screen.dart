@@ -1,24 +1,21 @@
-import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:halp/components/action_button.dart';
 import 'package:halp/components/base_scaffold.dart';
-import 'package:halp/components/icon_label.dart';
 import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/post_card.dart';
 import 'package:halp/components/post_full_card.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/misc/arguments_post_screen.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/services.dart';
 
 class PostScreen extends StatelessWidget {
+  static const routeName = '/post';
   int id;
   String title;
   String userName;
   int hearts;
   int comments;
-  Image imagePreview;
+  String imagePreview;
   AssetImage imageAvatar;
   List<String> tags;
   ArgumentsPostScreen arguments;
@@ -32,14 +29,14 @@ class PostScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: mainWhite,
     ));
-    this.id = arguments.id;
-    this.title = arguments.title;
-    this.userName = arguments.userName;
-    this.hearts = arguments.hearts;
-    this.comments = arguments.comments;
-    this.imagePreview = arguments.imagePreview;
-    this.imageAvatar = arguments.imageAvatar;
-    this.tags = arguments.tags;
+    id = arguments.id;
+    title = arguments.title;
+    userName = arguments.userName;
+    hearts = arguments.hearts;
+    comments = arguments.comments;
+    imagePreview = arguments.imagePreview;
+    imageAvatar = arguments.imageAvatar;
+    tags = arguments.tags;
     return BaseScaffold(
       body: Container(
         color: backgroundGrey,
@@ -57,7 +54,7 @@ class PostScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 500,
                         child: Image.asset(
-                          'assets/images/mockup_video_Ayaki.jpg',
+                          imagePreview,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -127,8 +124,9 @@ class PostScreen extends StatelessWidget {
                           title: 'Primeiro treine seus abs!',
                           hearts: 301,
                           child: ImageFormatter(
-                              height: 400,
-                              child: Image.asset('assets/images/mockup_video_Ayaki.jpg')),
+                            height: 400,
+                            image: imagePreview,
+                          ),
                         ),
                       ],
                     ),

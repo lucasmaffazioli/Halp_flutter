@@ -6,6 +6,7 @@ import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/misc/arguments_post_screen.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/screens/post_screen.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/services.dart';
 
@@ -15,7 +16,7 @@ class PostFeed extends StatelessWidget {
   final String userName;
   final int hearts;
   final int comments;
-  final Image imagePreview;
+  final String imagePreview;
   final AssetImage imageAvatar;
   final List<String> tags;
   PostFeed(
@@ -56,7 +57,7 @@ class PostFeed extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      '/post',
+                      PostScreen.routeName,
                       arguments: ArgumentsPostScreen(
                           id: id,
                           title: title,
@@ -72,7 +73,7 @@ class PostFeed extends StatelessWidget {
                     children: <Widget>[
                       ImageFormatter(
                         height: 400,
-                        child: imagePreview,
+                        image: imagePreview,
                       ),
                       Positioned.fill(
                         child: Padding(

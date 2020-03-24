@@ -6,7 +6,7 @@ class ArgumentsPostScreen {
   final String userName;
   final int hearts;
   final int comments;
-  final Image imagePreview;
+  final String imagePreview;
   final AssetImage imageAvatar;
   final List<String> tags;
   ArgumentsPostScreen(

@@ -62,7 +62,11 @@ class PostFullCard extends StatelessWidget {
               ),
             ],
           ),
-          Container(child: child),
+          if (child != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+              child: child,
+            ),
           SizedBox(
             height: 12,
           ),

@@ -18,17 +18,17 @@ class IconLabel extends StatelessWidget {
             children: <Widget>[
               Icon(
                 icon,
-                size: 28,
+                size: 24,
                 color: mainGrey,
               ),
               SizedBox(
-                width: 10,
+                width: 8,
               ),
               Text(
                 label,
                 style: TextStyle(
                   color: mainGrey,
-                  fontSize: 24,
+                  fontSize: 20,
                 ),
               ),
             ],

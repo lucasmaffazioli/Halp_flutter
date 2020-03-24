@@ -103,9 +103,9 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => Login(),
-          '/feed': (context) => FeedScreen(),
+          FeedScreen.routeName: (context) => FeedScreen(),
           // '/post': (context) => PostScreen(
-          '/post': (context) => PostScreen(
+          PostScreen.routeName: (context) => PostScreen(
                 arguments: ModalRoute.of(context).settings.arguments,
               ),
         },

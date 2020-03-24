@@ -5,7 +5,7 @@ import 'package:halp/models/login_model.dart';
 import 'package:provider/provider.dart';
 
 class FeedScreen extends StatelessWidget {
-  static const routeName = '/passArguments'; // TODO implement named route
+  static const routeName = '/feed'; // TODO implement named route
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class FeedScreen extends StatelessWidget {
               id: 0,
               title: 'Como ficar bonitão em uma rave?',
               userName: 'Ayaki Nanami',
-              imagePreview: Image.asset('assets/images/mockup_video_Ayaki.jpg'),
+              imagePreview: 'assets/images/mockup_video_Ayaki.jpg',
               imageAvatar: AssetImage('assets/images/mockup_ayaki_avatar.png'),
               tags: ['Rave', 'Moda', 'Lifestyle'],
               comments: 2,
@@ -32,7 +32,7 @@ class FeedScreen extends StatelessWidget {
               id: 1,
               title: 'Como ter mais inscritos no YouTube?',
               userName: 'Jake Paul',
-              imagePreview: Image.asset('assets/images/mockup_video_Jake.jpg'),
+              imagePreview: 'assets/images/mockup_video_Jake.jpg',
               imageAvatar: AssetImage('assets/images/mockup_jake_avatar.jpg'),
               tags: ['YouTube', 'Empreendedorismo'],
               comments: 88,
@@ -41,7 +41,7 @@ class FeedScreen extends StatelessWidget {
               id: 2,
               title: 'Devo casar com ela?!',
               userName: 'Jake Paul',
-              imagePreview: Image.asset('assets/images/mockup_video_Jake_2.jpg'),
+              imagePreview: 'assets/images/mockup_video_Jake_2.jpg',
               imageAvatar: AssetImage('assets/images/mockup_jake_avatar.jpg'),
               tags: ['Popstar', 'Casamento', 'Dicas pessoais'],
               comments: 50,

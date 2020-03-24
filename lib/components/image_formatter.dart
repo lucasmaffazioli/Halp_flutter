@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class ImageFormatter extends StatelessWidget {
   final Widget child;
   final double height;
+  final String image;
 
-  ImageFormatter({this.child, this.height});
+  ImageFormatter({this.child, this.height, this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ImageFormatter extends StatelessWidget {
         width: double.infinity,
         height: height,
         child: Image.asset(
-          'assets/images/mockup_video_Ayaki.jpg',
+          image,
           fit: BoxFit.fitWidth,
         ),
       ),
