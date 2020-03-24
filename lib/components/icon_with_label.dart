@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:halp/misc/constants.dart';
 
-class IconLabel extends StatelessWidget {
+class IconWithLabel extends StatelessWidget {
   final IconData icon;
   final String label;
   final bool horizontal;
-  IconLabel({
+  IconWithLabel({
     @required this.icon,
     @required this.label,
     this.horizontal = false,

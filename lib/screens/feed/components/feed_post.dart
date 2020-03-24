@@ -1,16 +1,16 @@
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/action_button.dart';
-import 'package:halp/components/icon_label.dart';
+import 'package:halp/components/icon_with_label.dart';
 import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
-import 'package:halp/misc/arguments_post_screen.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:halp/screens/post_screen.dart';
+import 'package:halp/screens/post/arguments_post_screen.dart';
+import 'package:halp/screens/post/post_screen.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/services.dart';
 
-class PostFeed extends StatelessWidget {
+class FeedPost extends StatelessWidget {
   final int id;
   final String title;
   final String userName;
@@ -19,7 +19,7 @@ class PostFeed extends StatelessWidget {
   final String imagePreview;
   final AssetImage imageAvatar;
   final List<String> tags;
-  PostFeed(
+  FeedPost(
       {@required this.id,
       @required this.title,
       @required this.userName,
@@ -138,13 +138,13 @@ class PostFeed extends StatelessWidget {
                           Icons.more_vert,
                           color: mainGrey,
                         ),
-                        IconLabel(
+                        IconWithLabel(
                           icon: Icons.favorite_border,
                           label: FlutterMoneyFormatter(amount: hearts.toDouble())
                               .output
                               .withoutFractionDigits,
                         ),
-                        IconLabel(
+                        IconWithLabel(
                           icon: OMIcons.modeComment,
                           label: FlutterMoneyFormatter(amount: comments.toDouble())
                               .output

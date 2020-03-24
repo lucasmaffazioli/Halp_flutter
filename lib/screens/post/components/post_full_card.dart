@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
-import 'package:halp/components/icon_label.dart';
-import 'package:halp/components/post_card.dart';
+import 'package:halp/components/icon_with_label.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/screens/post/components/post_card.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
 class PostFullCard extends StatelessWidget {
@@ -85,7 +85,7 @@ class PostFullCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                IconLabel(
+                IconWithLabel(
                   horizontal: true,
                   icon: Icons.favorite_border,
                   label:
@@ -93,7 +93,7 @@ class PostFullCard extends StatelessWidget {
                 ),
                 isReply
                     ? Container()
-                    : IconLabel(
+                    : IconWithLabel(
                         horizontal: true,
                         icon: OMIcons.modeComment,
                         label: FlutterMoneyFormatter(amount: comments.toDouble())

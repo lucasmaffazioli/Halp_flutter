@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/components/image_formatter.dart';
-import 'package:halp/components/post_card.dart';
-import 'package:halp/components/post_full_card.dart';
 import 'package:halp/components/tag.dart';
-import 'package:halp/misc/arguments_post_screen.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:flutter/services.dart';
+import 'package:halp/screens/post/arguments_post_screen.dart';
+import 'package:halp/screens/post/components/post_card.dart';
+import 'package:halp/screens/post/components/post_full_card.dart';
 
 class PostScreen extends StatelessWidget {
   static const routeName = '/post';
-  int id;
-  String title;
-  String userName;
-  int hearts;
-  int comments;
-  String imagePreview;
-  AssetImage imageAvatar;
-  List<String> tags;
-  ArgumentsPostScreen arguments;
+  final int id;
+  final String title;
+  final String userName;
+  final int hearts;
+  final int comments;
+  final String imagePreview;
+  final AssetImage imageAvatar;
+  final List<String> tags;
+  final ArgumentsPostScreen arguments;
 
-  PostScreen({
-    @required this.arguments,
-  });
+  PostScreen({@required this.arguments})
+      : //limitPages = arguments.hearts,
+        id = arguments.id,
+        title = arguments.title,
+        userName = arguments.userName,
+        hearts = arguments.hearts,
+        comments = arguments.comments,
+        imagePreview = arguments.imagePreview,
+        imageAvatar = arguments.imageAvatar,
+        tags = arguments.tags;
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: mainWhite,
     ));
-    id = arguments.id;
-    title = arguments.title;
-    userName = arguments.userName;
-    hearts = arguments.hearts;
-    comments = arguments.comments;
-    imagePreview = arguments.imagePreview;
-    imageAvatar = arguments.imageAvatar;
-    tags = arguments.tags;
     return BaseScaffold(
       body: Container(
         color: backgroundGrey,

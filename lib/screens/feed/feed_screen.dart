@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:halp/components/base_scaffold.dart';
-import 'package:halp/components/post_feed.dart';
+import 'package:halp/screens/feed/components/feed_post.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:provider/provider.dart';
 
 class FeedScreen extends StatelessWidget {
-  static const routeName = '/feed'; // TODO implement named route
+  static const routeName = '/feed';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class FeedScreen extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
         children: <Widget>[
-          PostFeed(
+          FeedPost(
               id: 0,
               title: 'Como ficar bonitão em uma rave?',
               userName: 'Ayaki Nanami',
@@ -28,7 +28,7 @@ class FeedScreen extends StatelessWidget {
               tags: ['Rave', 'Moda', 'Lifestyle'],
               comments: 2,
               hearts: 25),
-          PostFeed(
+          FeedPost(
               id: 1,
               title: 'Como ter mais inscritos no YouTube?',
               userName: 'Jake Paul',
@@ -37,7 +37,7 @@ class FeedScreen extends StatelessWidget {
               tags: ['YouTube', 'Empreendedorismo'],
               comments: 88,
               hearts: 1930),
-          PostFeed(
+          FeedPost(
               id: 2,
               title: 'Devo casar com ela?!',
               userName: 'Jake Paul',

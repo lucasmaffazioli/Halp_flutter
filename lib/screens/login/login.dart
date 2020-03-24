@@ -1,9 +1,10 @@
 import 'package:halp/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/big_button.dart';
-import 'package:halp/components/input_register.dart';
-import 'package:halp/components/waves_separator.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/screens/feed/feed_screen.dart';
+import 'package:halp/screens/login/components/input_register.dart';
+import 'package:halp/screens/login/components/waves_separator.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -261,10 +262,16 @@ class _SignUpComponent extends StatelessWidget {
   }
 }
 
-class _LoginComponent extends StatelessWidget {
+class _LoginComponent extends StatefulWidget {
+  @override
+  __LoginComponentState createState() => __LoginComponentState();
+}
+
+class __LoginComponentState extends State<_LoginComponent> {
   final _formKey = GlobalKey<FormState>();
 
   String _user;
+
   String _password;
 
   @override
@@ -280,7 +287,9 @@ class _LoginComponent extends StatelessWidget {
               label: 'User',
               icon: Icon(Icons.mail),
               onSaved: (String newUser) {
-                _user = newUser;
+                setState(() {
+                  _user = newUser;
+                });
               },
               validator: (value) {
                 if (value.isEmpty) {
@@ -296,7 +305,9 @@ class _LoginComponent extends StatelessWidget {
               label: 'Password',
               icon: Icon(Icons.mail),
               onSaved: (String newPassword) {
-                _password = newPassword;
+                setState(() {
+                  _password = newPassword;
+                });
               },
               validator: (value) {
                 if (value.isEmpty) {
@@ -324,8 +335,7 @@ class _LoginComponent extends StatelessWidget {
                   ).setLoggedUser(_user);
 
                   // LoginModel().setLoggedUser(_user);
-                  Navigator.pushNamed(
-                      context, '/feed'); // TODO use routeName inside object or something
+                  Navigator.pushNamed(context, FeedScreen.routeName);
                 }
               },
             ),
