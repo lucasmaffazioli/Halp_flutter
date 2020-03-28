@@ -9,6 +9,7 @@ const Color mainBlack = Colors.black;
 const Color mainGrey = Color(0xFF9E9E9E);
 const Color greyDivider = Color(0xFFd9d9d9);
 const Color backgroundGrey = Color(0xFFF5F4F6);
+const Color kVerifiedBlue = Color(0xFF1DA1F2);
 
 const LinearGradient buttonMainGradient = LinearGradient(
   colors: <Color>[Color(0xFF8400DB), Color(0xFF610084)],

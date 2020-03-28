@@ -59,7 +59,7 @@ class _FeedScreenState extends State<FeedScreen> {
     print('listPosts');
     print(listPosts);
 
-    return Future.delayed(const Duration(milliseconds: 2000), () {
+    return Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         setState(() {
           listPosts.clear();
