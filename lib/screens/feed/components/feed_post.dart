@@ -37,6 +37,10 @@ class FeedPost extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: mainWhite,
     ));
+
+    print('videoPreview');
+    print(videoPreview);
+
     return Container(
       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(

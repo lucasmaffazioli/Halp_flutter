@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageFormatter extends StatelessWidget {
@@ -14,12 +15,15 @@ class ImageFormatter extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         height: height,
-        child: Image.asset(
-          image,
-          fit: BoxFit.fitWidth,
+        child: IntrinsicHeight(
+          child: CachedNetworkImage(
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            imageUrl: image,
+            fit: BoxFit.cover,
+            // placeholder: (context, url) => new CircularProgressIndicator(),
+          ),
         ),
       ),
-      // child
     );
   }
 }

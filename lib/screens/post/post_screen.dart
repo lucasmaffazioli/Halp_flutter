@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/components/image_formatter.dart';
@@ -51,12 +52,15 @@ class PostScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 500,
-                        child: Image.asset(
-                          videoPreview,
-                          fit: BoxFit.fitWidth,
+                        child: IntrinsicHeight(
+                          child: // IntrinsicWidth(child: Image.network(image)
+                              CachedNetworkImage(
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                            imageUrl: videoPreview,
+                            fit: BoxFit.fitWidth,
+                          ),
                         ),
                       ),
-                      // child: videoPreview,
                     ],
                   ),
                 ),

@@ -23,21 +23,14 @@ class _FeedScreenState extends State<FeedScreen> {
     String jsonString =
         await DefaultAssetBundle.of(context).loadString("assets/data/feed_posts.json");
     Map<String, dynamic> data = jsonDecode(jsonString);
-    // final jsonResult = json.decode(data);
-
-    print('aaaaaaaaa');
-    print(data);
 
     List posts = data['posts'];
 
-    print('posts');
-    // print(posts);
-
     if (posts.length > 0) {
       for (final item in posts) {
-        print('item');
-        print('$item');
-        print(item['tags']);
+        // print('item');
+        // print('$item');
+        // print(item['tags']);
         setState(() {
           listPostsTemp.add(
             FeedPost(
@@ -55,16 +48,11 @@ class _FeedScreenState extends State<FeedScreen> {
         });
       }
     }
-
-    print('listPosts');
-    print(listPosts);
-
     return Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         setState(() {
           listPosts.clear();
           listPosts = listPostsTemp;
-          // listPosts
         });
       });
     });
