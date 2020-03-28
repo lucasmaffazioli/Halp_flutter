@@ -8,7 +8,7 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 class PostFullCard extends StatelessWidget {
   const PostFullCard({
     Key key,
-    @required this.imageAvatar,
+    @required this.avatar,
     @required this.userName,
     @required this.title,
     @required this.hearts,
@@ -17,7 +17,7 @@ class PostFullCard extends StatelessWidget {
     this.child,
   }) : super(key: key);
 
-  final AssetImage imageAvatar;
+  final String avatar;
   final String userName;
   final String title;
   final int hearts;
@@ -34,8 +34,8 @@ class PostFullCard extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               CircleAvatar(
-                backgroundImage: imageAvatar,
-              ),
+                  // backgroundImage: avatar,
+                  ),
               SizedBox(
                 width: 10,
               ),

@@ -15,8 +15,8 @@ class PostScreen extends StatelessWidget {
   final String userName;
   final int hearts;
   final int comments;
-  final String imagePreview;
-  final AssetImage imageAvatar;
+  final String videoPreview;
+  final String avatar;
   final List<String> tags;
   final ArgumentsPostScreen arguments;
 
@@ -26,8 +26,8 @@ class PostScreen extends StatelessWidget {
         userName = arguments.userName,
         hearts = arguments.hearts,
         comments = arguments.comments,
-        imagePreview = arguments.imagePreview,
-        imageAvatar = arguments.imageAvatar,
+        videoPreview = arguments.videoPreview,
+        avatar = arguments.avatar,
         tags = arguments.tags;
 
   @override
@@ -52,11 +52,11 @@ class PostScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 500,
                         child: Image.asset(
-                          imagePreview,
+                          videoPreview,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
-                      // child: imagePreview,
+                      // child: videoPreview,
                     ],
                   ),
                 ),
@@ -72,7 +72,7 @@ class PostScreen extends StatelessWidget {
                       children: <Widget>[
                         PostFullCard(
                           isReply: false,
-                          imageAvatar: imageAvatar,
+                          avatar: avatar,
                           userName: userName,
                           title: title,
                           hearts: hearts,
@@ -117,13 +117,13 @@ class PostScreen extends StatelessWidget {
                         ),
                         PostFullCard(
                           isReply: true,
-                          imageAvatar: imageAvatar,
+                          avatar: avatar,
                           userName: 'ATHLEAN-X™',
                           title: 'Primeiro treine seus abs!',
                           hearts: 301,
                           child: ImageFormatter(
                             height: 400,
-                            image: imagePreview,
+                            image: videoPreview,
                           ),
                         ),
                       ],

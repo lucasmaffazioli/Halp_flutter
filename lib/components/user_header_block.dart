@@ -4,12 +4,14 @@ import 'package:halp/misc/constants.dart';
 class UserHeader extends StatelessWidget {
   const UserHeader({
     Key key,
-    @required this.imageAvatar,
+    @required this.avatar,
     @required this.userName,
+    @required this.isVerified,
   }) : super(key: key);
 
-  final AssetImage imageAvatar;
+  final String avatar;
   final String userName;
+  final bool isVerified;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,8 @@ class UserHeader extends StatelessWidget {
       // mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         CircleAvatar(
-          backgroundImage: imageAvatar,
-        ),
+            // backgroundImage: avatar,
+            ),
         SizedBox(
           width: 10,
         ),

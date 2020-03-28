@@ -15,18 +15,20 @@ class FeedPost extends StatelessWidget {
   final int id;
   final String title;
   final String userName;
+  final bool isVerified;
   final int hearts;
   final int comments;
-  final String imagePreview;
-  final AssetImage imageAvatar;
+  final String videoPreview;
+  final String avatar;
   final List<String> tags;
   FeedPost(
       {@required this.id,
       @required this.title,
       @required this.userName,
+      @required this.isVerified,
       @required this.hearts,
-      @required this.imagePreview,
-      @required this.imageAvatar,
+      @required this.videoPreview,
+      @required this.avatar,
       @required this.tags,
       @required this.comments});
 
@@ -66,9 +68,10 @@ class FeedPost extends StatelessWidget {
                           id: id,
                           title: title,
                           userName: userName,
+                          isVerified: isVerified,
                           hearts: hearts,
-                          imagePreview: imagePreview,
-                          imageAvatar: imageAvatar,
+                          videoPreview: videoPreview,
+                          avatar: avatar,
                           tags: tags,
                           comments: comments),
                     );
@@ -77,14 +80,15 @@ class FeedPost extends StatelessWidget {
                     children: <Widget>[
                       ImageFormatter(
                         height: 400,
-                        image: imagePreview,
+                        image: videoPreview,
                       ),
                       Positioned.fill(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
-                            child: UserHeader(imageAvatar: imageAvatar, userName: userName),
+                            child: UserHeader(
+                                avatar: avatar, userName: userName, isVerified: isVerified),
                           ),
                         ),
                       ),
