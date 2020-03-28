@@ -37,6 +37,7 @@ import 'package:halp/screens/feed/feed_screen.dart';
 import 'package:halp/screens/login/login.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:halp/screens/post/post_screen.dart';
+import 'package:halp/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -104,10 +105,9 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Login(),
           FeedScreen.routeName: (context) => FeedScreen(),
-          // '/post': (context) => PostScreen(
-          PostScreen.routeName: (context) => PostScreen(
-                arguments: ModalRoute.of(context).settings.arguments,
-              ),
+          PostScreen.routeName: (context) =>
+              PostScreen(arguments: ModalRoute.of(context).settings.arguments),
+          ProfileScreen.routeName: (context) => ProfileScreen(),
         },
       ),
     );

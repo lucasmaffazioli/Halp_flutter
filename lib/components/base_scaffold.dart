@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/screens/feed/feed_screen.dart';
+import 'package:halp/screens/profile/profile_screen.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:halp/models/login_model.dart';
@@ -51,7 +53,12 @@ class BaseScaffold extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(OMIcons.home),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            FeedScreen.routeName,
+                          );
+                        },
                       ),
                       IconButton(
                         icon: Icon(Icons.search),
@@ -65,10 +72,21 @@ class BaseScaffold extends StatelessWidget {
                         icon: Icon(Icons.favorite_border),
                         onPressed: () {},
                       ),
-                      CircleAvatar(
-                        maxRadius: 16,
-                        minRadius: 16,
-                        backgroundImage: AssetImage('assets/images/mockup_jake_avatar.jpg'),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 9),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              ProfileScreen.routeName,
+                            );
+                          },
+                          child: CircleAvatar(
+                            maxRadius: 16,
+                            minRadius: 16,
+                            backgroundImage: AssetImage('assets/images/mockup_jake_avatar.jpg'),
+                          ),
+                        ),
                       ),
                     ],
                   ),

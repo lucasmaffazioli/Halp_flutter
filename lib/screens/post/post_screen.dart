@@ -21,8 +21,7 @@ class PostScreen extends StatelessWidget {
   final ArgumentsPostScreen arguments;
 
   PostScreen({@required this.arguments})
-      : //limitPages = arguments.hearts,
-        id = arguments.id,
+      : id = arguments.id,
         title = arguments.title,
         userName = arguments.userName,
         hearts = arguments.hearts,

@@ -3,9 +3,15 @@ import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/screens/feed/components/feed_post.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:provider/provider.dart';
+import 'package:halp/services/getPosts.dart';
 
 class FeedScreen extends StatelessWidget {
   static const routeName = '/feed';
+
+  Future<List<Widget>> _getPosts() async {
+    Map<String, dynamic> dmap = await getPosts('assets/test.json');
+    print(dmap);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +24,7 @@ class FeedScreen extends StatelessWidget {
     return BaseScaffold(
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+        // children: _getPosts(),
         children: <Widget>[
           FeedPost(
               id: 0,

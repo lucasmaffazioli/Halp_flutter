@@ -4,6 +4,7 @@ import 'package:halp/components/action_button.dart';
 import 'package:halp/components/icon_with_label.dart';
 import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
+import 'package:halp/components/user_header_block.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:halp/screens/post/arguments_post_screen.dart';
 import 'package:halp/screens/post/post_screen.dart';
@@ -39,12 +40,15 @@ class FeedPost extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(
-            title,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 26,
-              fontFamily: 'RobotoCondensed',
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
+            child: Text(
+              title,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 22,
+                fontFamily: 'RobotoCondensed',
+              ),
             ),
           ),
           // IntrinsicHeight( // Removido pois bugava o widget INK
@@ -80,40 +84,7 @@ class FeedPost extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
-                            child: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.end,
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                CircleAvatar(
-                                  backgroundImage: imageAvatar,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  userName,
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                    shadows: [
-                                      // Shadow(
-                                      //   blurRadius: 2,
-                                      //   // color: Color(0xFF8000FF),
-                                      //   color: Colors.black,
-                                      //   offset: Offset(0, 0),
-                                      // ),
-                                      Shadow(
-                                        blurRadius: 10,
-                                        color: Colors.blue,
-                                        offset: Offset(0, 3.0),
-                                      ),
-                                    ],
-                                    color: mainWhite,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            child: UserHeader(imageAvatar: imageAvatar, userName: userName),
                           ),
                         ),
                       ),
@@ -174,9 +145,9 @@ class FeedPost extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Divider(
-              color: mainGrey,
+              color: greyDivider,
             ),
           ),
         ],
