@@ -1,35 +1,76 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/base_scaffold.dart';
-import 'package:halp/components/image_formatter.dart';
+// import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:flutter/services.dart';
-import 'package:halp/screens/post/arguments_post_screen.dart';
+import 'package:halp/models/feed_posts_model.dart';
 import 'package:halp/screens/post/components/post_card.dart';
 import 'package:halp/screens/post/components/post_full_card.dart';
 
-class PostScreen extends StatelessWidget {
+class PostScreen extends StatefulWidget {
   static const routeName = '/post';
-  final int id;
-  final String title;
-  final String userName;
-  final int hearts;
-  final int comments;
-  final String videoPreview;
-  final String avatar;
-  final List<String> tags;
-  final ArgumentsPostScreen arguments;
+  final FeedPostsModel args;
+  PostScreen(this.args);
 
-  PostScreen({@required this.arguments})
-      : id = arguments.id,
-        title = arguments.title,
-        userName = arguments.userName,
-        hearts = arguments.hearts,
-        comments = arguments.comments,
-        videoPreview = arguments.videoPreview,
-        avatar = arguments.avatar,
-        tags = arguments.tags;
+  @override
+  _PostScreenState createState() => _PostScreenState();
+}
+
+class _PostScreenState extends State<PostScreen> {
+  List<Widget> replies = [Text('Loading...')];
+  void asyncFunc() async {
+    // FeedPostsModel itemModel;
+    // List<Widget> listComments = [Text('Loading...')];
+    // List<Widget> listCommentsTemp = [];
+
+    String jsonString =
+        await DefaultAssetBundle.of(context).loadString("assets/data/post_details.json");
+
+    List<dynamic> data = jsonDecode(jsonString);
+    print('data');
+    print(data);
+    if (data.length > 0) {
+      for (final item in data) {
+        print('item');
+        print(item);
+        // itemModel = new FeedPostsModel(
+        //   id: item['id'],
+        //   title: item['title'],
+        //   userName: item['userName'],
+        //   isVerified: item['isVerified'],
+        //   comments: item['comments'],
+        //   hearts: item['hearts'],
+        //   tags: item['tags'].cast<String>(),
+        //   avatar: item['avatar'],
+        //   videoPreview: item['videoPreview'],
+        // );
+
+        // setState(() {
+        //   listCommentsTemp.add(
+        //       PostFu(itemModel),
+        //       );
+        // });
+      }
+    }
+    // return Future.delayed(const Duration(milliseconds: 500), () {
+    //   setState(() {
+    //     setState(() {
+    //       listComments.clear();
+    //       listComments = listCommentsTemp;
+    //     });
+    //   });
+    // });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    asyncFunc();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +93,11 @@ class PostScreen extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 500,
-                        child: IntrinsicHeight(
-                          child: // IntrinsicWidth(child: Image.network(image)
-                              CachedNetworkImage(
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                            imageUrl: videoPreview,
-                            fit: BoxFit.fitWidth,
-                          ),
+                        child: // IntrinsicWidth(child: Image.network(image)
+                            CachedNetworkImage(
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                          imageUrl: widget.args.videoPreview,
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
                     ],
@@ -75,12 +114,8 @@ class PostScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         PostFullCard(
+                          widget.args,
                           isReply: false,
-                          avatar: avatar,
-                          userName: userName,
-                          title: title,
-                          hearts: hearts,
-                          comments: comments,
                         ),
                         PostCard(
                           child: Column(
@@ -104,7 +139,7 @@ class PostScreen extends StatelessWidget {
                                 spacing: 14, // gap between adjacent chips
                                 runSpacing: 4, // gap between lines
                                 children: <Tag>[
-                                  for (var tag in tags)
+                                  for (var tag in widget.args.tags)
                                     Tag(
                                       tag,
                                       isBig: true,
@@ -119,21 +154,21 @@ class PostScreen extends StatelessWidget {
                           //   onPressed: () {},
                           // ),
                         ),
-                        PostFullCard(
-                          isReply: true,
-                          avatar: avatar,
-                          userName: 'ATHLEAN-X™',
-                          title: 'Primeiro treine seus abs!',
-                          hearts: 301,
-                          child: ImageFormatter(
-                            height: 400,
-                            image: videoPreview,
-                          ),
-                        ),
+                        // PostFullCard(
+                        //   widget.args,
+                        //   isReply: true,
+                        //   child: ImageFormatter(
+                        //     height: 400,
+                        //     image: widget.args.videoPreview,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
                 ),
+                Column(
+                  children: replies,
+                )
               ],
             ),
           ],

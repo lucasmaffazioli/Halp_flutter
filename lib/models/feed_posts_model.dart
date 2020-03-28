@@ -1,6 +1,8 @@
 class FeedPostsModel {
   final int id;
   final String title;
+  final int userId;
+  // final String user;
   final String userName;
   final bool isVerified;
   final int hearts;
@@ -12,6 +14,8 @@ class FeedPostsModel {
   FeedPostsModel(
       {this.id,
       this.title,
+      this.userId,
+      // this.user,
       this.userName,
       this.isVerified,
       this.hearts,

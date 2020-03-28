@@ -6,31 +6,34 @@ import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/components/user_header_block.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:halp/screens/post/arguments_post_screen.dart';
+import 'package:halp/models/feed_posts_model.dart';
 import 'package:halp/screens/post/post_screen.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/services.dart';
 
 class FeedPost extends StatelessWidget {
-  final int id;
-  final String title;
-  final String userName;
-  final bool isVerified;
-  final int hearts;
-  final int comments;
-  final String videoPreview;
-  final String avatar;
-  final List<String> tags;
-  FeedPost(
-      {@required this.id,
-      @required this.title,
-      @required this.userName,
-      @required this.isVerified,
-      @required this.hearts,
-      @required this.videoPreview,
-      @required this.avatar,
-      @required this.tags,
-      @required this.comments});
+  final FeedPostsModel args;
+  FeedPost(this.args);
+
+  // final int id;
+  // final String title;
+  // final String userName;
+  // final bool isVerified;
+  // final int hearts;
+  // final int comments;
+  // final String videoPreview;
+  // final String avatar;
+  // final List<String> tags;
+  // FeedPost(
+  //     {@required this.id,
+  //     @required this.title,
+  //     @required this.userName,
+  //     @required this.isVerified,
+  //     @required this.hearts,
+  //     @required this.videoPreview,
+  //     @required this.avatar,
+  //     @required this.tags,
+  //     @required this.comments});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class FeedPost extends StatelessWidget {
     ));
 
     print('videoPreview');
-    print(videoPreview);
+    print(args.videoPreview);
 
     return Container(
       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -49,7 +52,7 @@ class FeedPost extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 6),
             child: Text(
-              title,
+              args.title,
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 22,
@@ -68,23 +71,14 @@ class FeedPost extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       PostScreen.routeName,
-                      arguments: ArgumentsPostScreen(
-                          id: id,
-                          title: title,
-                          userName: userName,
-                          isVerified: isVerified,
-                          hearts: hearts,
-                          videoPreview: videoPreview,
-                          avatar: avatar,
-                          tags: tags,
-                          comments: comments),
+                      arguments: args,
                     );
                   },
                   child: Stack(
                     children: <Widget>[
                       ImageFormatter(
                         height: 400,
-                        image: videoPreview,
+                        image: args.videoPreview,
                       ),
                       Positioned.fill(
                         child: Padding(
@@ -92,7 +86,9 @@ class FeedPost extends StatelessWidget {
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
                             child: UserHeader(
-                                avatar: avatar, userName: userName, isVerified: isVerified),
+                                avatar: args.avatar,
+                                userName: args.userName,
+                                isVerified: args.isVerified),
                           ),
                         ),
                       ),
@@ -119,13 +115,13 @@ class FeedPost extends StatelessWidget {
                         ),
                         IconWithLabel(
                           icon: Icons.favorite_border,
-                          label: FlutterMoneyFormatter(amount: hearts.toDouble())
+                          label: FlutterMoneyFormatter(amount: args.hearts.toDouble())
                               .output
                               .withoutFractionDigits,
                         ),
                         IconWithLabel(
                           icon: OMIcons.modeComment,
-                          label: FlutterMoneyFormatter(amount: comments.toDouble())
+                          label: FlutterMoneyFormatter(amount: args.comments.toDouble())
                               .output
                               .withoutFractionDigits,
                         ),
@@ -134,7 +130,7 @@ class FeedPost extends StatelessWidget {
                           spacing: 5, // gap between adjacent chips
                           runSpacing: 4, // gap between lines
                           children: <Tag>[
-                            for (var tag in tags)
+                            for (var tag in args.tags)
                               Tag(
                                 tag,
                                 onPressed: () {},

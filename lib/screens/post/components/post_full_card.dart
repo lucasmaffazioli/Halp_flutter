@@ -2,28 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:halp/components/icon_with_label.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/models/feed_posts_model.dart';
 import 'package:halp/screens/post/components/post_card.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
 class PostFullCard extends StatelessWidget {
-  const PostFullCard({
-    Key key,
-    @required this.avatar,
-    @required this.userName,
-    @required this.title,
-    @required this.hearts,
-    this.comments = 0,
-    this.isReply = false,
-    this.child,
-  }) : super(key: key);
+  // const PostFullCard({
+  //   Key key,
+  //   @required this.avatar,
+  //   @required this.userName,
+  //   @required this.title,
+  //   @required this.hearts,
+  //   this.comments = 0,
+  //   this.isReply = false,
+  //   this.child,
+  // }) : super(key: key);
 
-  final String avatar;
-  final String userName;
-  final String title;
-  final int hearts;
-  final int comments;
+  // final String avatar;
+  // final String userName;
+  // final String title;
+  // final int hearts;
+  // final int comments;
   final bool isReply;
   final Widget child;
+
+  final FeedPostsModel args;
+  PostFullCard(this.args, {this.child, this.isReply});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,7 @@ class PostFullCard extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                userName,
+                args.userName,
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
@@ -71,7 +75,7 @@ class PostFullCard extends StatelessWidget {
             height: 12,
           ),
           Text(
-            title,
+            args.title,
             textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: 26,
@@ -88,15 +92,16 @@ class PostFullCard extends StatelessWidget {
                 IconWithLabel(
                   horizontal: true,
                   icon: Icons.favorite_border,
-                  label:
-                      FlutterMoneyFormatter(amount: hearts.toDouble()).output.withoutFractionDigits,
+                  label: FlutterMoneyFormatter(amount: args.hearts.toDouble())
+                      .output
+                      .withoutFractionDigits,
                 ),
                 isReply
                     ? Container()
                     : IconWithLabel(
                         horizontal: true,
                         icon: OMIcons.modeComment,
-                        label: FlutterMoneyFormatter(amount: comments.toDouble())
+                        label: FlutterMoneyFormatter(amount: args.comments.toDouble())
                             .output
                             .withoutFractionDigits,
                       ),
