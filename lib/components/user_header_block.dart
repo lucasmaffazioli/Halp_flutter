@@ -4,16 +4,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class UserHeader extends StatelessWidget {
-  const UserHeader({
-    Key key,
-    @required this.avatar,
-    @required this.userName,
-    @required this.isVerified,
-  }) : super(key: key);
+  const UserHeader(
+      {Key key,
+      @required this.avatar,
+      @required this.userName,
+      @required this.isVerified,
+      this.isReply = false})
+      : super(key: key);
 
   final String avatar;
   final String userName;
   final bool isVerified;
+  final bool isReply;
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +46,17 @@ class UserHeader extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'Roboto',
             fontWeight: FontWeight.bold,
-            fontSize: 24,
-            shadows: [
-              // Shadow(
-              //   blurRadius: 2,
-              //   // color: Color(0xFF8000FF),
-              //   color: Colors.black,
-              //   offset: Offset(0, 0),
-              // ),
-              Shadow(
-                blurRadius: 10,
-                color: Colors.blue,
-                offset: Offset(0, 3.0),
-              ),
-            ],
-            color: mainWhite,
+            fontSize: 22,
+            shadows: isReply
+                ? null
+                : [
+                    Shadow(
+                      blurRadius: 10,
+                      color: Colors.blue,
+                      offset: Offset(0, 3.0),
+                    ),
+                  ],
+            color: isReply ? mainBlack : mainWhite,
           ),
         ),
         SizedBox(

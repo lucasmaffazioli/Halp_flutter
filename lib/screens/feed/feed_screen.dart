@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:halp/components/base_scaffold.dart';
-import 'package:halp/models/feed_posts_model.dart';
+import 'package:halp/models/posts_header_model.dart';
 import 'package:halp/screens/feed/components/feed_post.dart';
 import 'package:halp/models/login_model.dart';
 import 'package:provider/provider.dart';
@@ -15,20 +15,20 @@ class FeedScreen extends StatefulWidget {
 
 class _FeedScreenState extends State<FeedScreen> {
   List<Widget> listPosts = [Text('Loading...')];
+  List<Widget> listPostsTemp = [];
 
   void asyncFunc() async {
-    FeedPostsModel itemModel;
-    List<Widget> listPostsTemp = [];
+    PostHeaderModel itemModel;
 
     String jsonString =
-        await DefaultAssetBundle.of(context).loadString("assets/data/posts_feed.json");
+        await DefaultAssetBundle.of(context).loadString("assets/data/posts_header.json");
     Map<String, dynamic> data = jsonDecode(jsonString);
 
     List posts = data['posts'];
 
     if (posts.length > 0) {
       for (final item in posts) {
-        itemModel = new FeedPostsModel(
+        itemModel = new PostHeaderModel(
           id: item['id'],
           title: item['title'],
           userName: item['userName'],

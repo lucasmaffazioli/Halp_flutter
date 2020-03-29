@@ -1,8 +1,7 @@
-class FeedPostsModel {
+class PostHeaderModel {
   final int id;
   final String title;
-  final int userId;
-  // final String user;
+  final String userId;
   final String userName;
   final bool isVerified;
   final int hearts;
@@ -10,21 +9,20 @@ class FeedPostsModel {
   final String videoPreview;
   final String avatar;
   final List<String> tags;
+  final String dateCreated;
+  final int commentsCount;
 
-  FeedPostsModel(
+  PostHeaderModel(
       {this.id,
       this.title,
       this.userId,
-      // this.user,
       this.userName,
       this.isVerified,
       this.hearts,
       this.videoPreview,
       this.avatar,
       this.tags,
-      this.comments});
-
-  // void toggleCheckbox() {
-  //   isChecked = !isChecked;
-  // }
+      this.comments,
+      this.dateCreated,
+      this.commentsCount});
 }

@@ -6,13 +6,13 @@ import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/components/user_header_block.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:halp/models/feed_posts_model.dart';
+import 'package:halp/models/posts_header_model.dart';
 import 'package:halp/screens/post/post_screen.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter/services.dart';
 
 class FeedPost extends StatelessWidget {
-  final FeedPostsModel args;
+  final PostHeaderModel args;
   FeedPost(this.args);
 
   // final int id;

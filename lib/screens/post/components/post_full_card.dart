@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:halp/components/icon_with_label.dart';
+import 'package:halp/components/user_header_block.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:halp/models/feed_posts_model.dart';
+import 'package:halp/models/posts_header_model.dart';
 import 'package:halp/screens/post/components/post_card.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
@@ -26,38 +27,23 @@ class PostFullCard extends StatelessWidget {
   final bool isReply;
   final Widget child;
 
-  final FeedPostsModel args;
+  final PostHeaderModel args;
   PostFullCard(this.args, {this.child, this.isReply});
 
   @override
   Widget build(BuildContext context) {
     return PostCard(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              CircleAvatar(
-                  // backgroundImage: avatar,
-                  ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                args.userName,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  // shadows: [
-                  //   Shadow(
-                  //     blurRadius: 10,
-                  //     color: Colors.blue,
-                  //     offset: Offset(0, 3.0),
-                  //   ),
-                  // ],
-                  color: mainBlack,
-                ),
+              UserHeader(
+                avatar: args.avatar,
+                userName: args.userName,
+                isVerified: args.isVerified,
+                isReply: true,
               ),
               Spacer(),
               Icon(
