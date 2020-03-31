@@ -8,6 +8,8 @@ import 'package:halp/screens/login/components/waves_separator.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
+  static const routeName = '/login';
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -20,7 +22,7 @@ class _LoginState extends State<Login> {
   final loginController = TextEditingController();
 
   ScreenStage currentStage = ScreenStage.welcome;
-  ScreenStage lastStage;
+  ScreenStage lastStage = ScreenStage.welcome;
 
   void setScreenStage(ScreenStage newStage) {
     print(newStage);
@@ -31,10 +33,14 @@ class _LoginState extends State<Login> {
   }
 
   Future<bool> _onBackPressed() async {
-    setState(() {
-      currentStage = lastStage;
-    });
-    return false;
+    if (currentStage == ScreenStage.welcome) {
+      return true;
+    } else {
+      setState(() {
+        currentStage = lastStage;
+      });
+      return false;
+    }
   }
 
   getInput() {
@@ -251,7 +257,7 @@ class _SignUpComponent extends StatelessWidget {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   print('validated!');
-                  Navigator.pushNamed(context, '/feed');
+                  Navigator.pushNamedAndRemoveUntil(context, FeedScreen.routeName, (r) => false);
                 }
               },
             ),
@@ -335,7 +341,8 @@ class __LoginComponentState extends State<_LoginComponent> {
                   ).setLoggedUser(_user);
 
                   // LoginModel().setLoggedUser(_user);
-                  Navigator.pushNamed(context, FeedScreen.routeName);
+                  // Navigator.pushNamed(context, FeedScreen.routeName);
+                  Navigator.pushNamedAndRemoveUntil(context, FeedScreen.routeName, (r) => false);
                 }
               },
             ),
