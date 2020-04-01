@@ -6,10 +6,37 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:halp/models/login_model.dart';
 
-class BaseScaffold extends StatelessWidget {
+enum TabItem { feed, search, profile }
+
+class BaseScaffold extends StatefulWidget {
   final Widget body;
   final String currentUser;
   BaseScaffold({@required this.body, this.currentUser});
+
+  @override
+  _BaseScaffoldState createState() => _BaseScaffoldState();
+}
+
+class _BaseScaffoldState extends State<BaseScaffold> {
+  TabItem currentTab = TabItem.feed;
+
+  Widget _buildBody() {
+    switch (currentTab) {
+      case TabItem.feed:
+        {
+          return FeedScreen();
+        }
+        break;
+
+      case TabItem.profile:
+        {
+          return ProfileScreen();
+        }
+        break;
+      default:
+        return FeedScreen();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +70,7 @@ class BaseScaffold extends StatelessWidget {
                     ),
                   ),
                 ),
-          body: body,
+          body: _buildBody(),
           bottomNavigationBar: !isUserLogged
               ? null
               : BottomAppBar(
@@ -54,10 +81,13 @@ class BaseScaffold extends StatelessWidget {
                       IconButton(
                         icon: Icon(OMIcons.home),
                         onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            FeedScreen.routeName,
-                          );
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   FeedScreen.routeName,
+                          // );
+                          setState(() {
+                            currentTab = TabItem.feed;
+                          });
                         },
                       ),
                       IconButton(
@@ -76,10 +106,13 @@ class BaseScaffold extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 9),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              ProfileScreen.routeName,
-                            );
+                            // Navigator.pushNamed(
+                            //   context,
+                            //   ProfileScreen.routeName,
+                            // );
+                            setState(() {
+                              currentTab = TabItem.profile;
+                            });
                           },
                           child: CircleAvatar(
                             maxRadius: 16,
