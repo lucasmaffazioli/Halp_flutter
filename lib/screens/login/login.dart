@@ -2,9 +2,9 @@ import 'package:halp/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:halp/components/big_button.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:halp/screens/feed/feed_screen.dart';
 import 'package:halp/screens/login/components/input_register.dart';
 import 'package:halp/screens/login/components/waves_separator.dart';
+import 'package:halp/screens/main_screen.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -257,7 +257,7 @@ class _SignUpComponent extends StatelessWidget {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   print('validated!');
-                  Navigator.pushNamedAndRemoveUntil(context, FeedScreen.routeName, (r) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (r) => false);
                 }
               },
             ),
@@ -342,7 +342,7 @@ class __LoginComponentState extends State<_LoginComponent> {
 
                   // LoginModel().setLoggedUser(_user);
                   // Navigator.pushNamed(context, FeedScreen.routeName);
-                  Navigator.pushNamedAndRemoveUntil(context, FeedScreen.routeName, (r) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (r) => false);
                 }
               },
             ),

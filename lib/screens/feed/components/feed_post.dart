@@ -68,6 +68,10 @@ class FeedPost extends StatelessWidget {
                 flex: 7,
                 child: GestureDetector(
                   onTap: () {
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //   // we'll look at ColorDetailPage later
+                    //   builder: (context) => PostScreen(args),
+                    // ));
                     Navigator.pushNamed(
                       context,
                       PostScreen.routeName,

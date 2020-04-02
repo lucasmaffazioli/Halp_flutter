@@ -6,10 +6,22 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:halp/models/login_model.dart';
 
-class BaseScaffold extends StatelessWidget {
+enum TabItem { feed, search, profile }
+
+class BaseScaffold extends StatefulWidget {
   final Widget body;
   final String currentUser;
   BaseScaffold({@required this.body, this.currentUser});
+
+  @override
+  _BaseScaffoldState createState() => _BaseScaffoldState();
+}
+
+class _BaseScaffoldState extends State<BaseScaffold> {
+  TabItem currentTab = TabItem.feed;
+  GlobalKey<NavigatorState> navigatorKey;
+
+  Widget _buildBody() {}
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +55,27 @@ class BaseScaffold extends StatelessWidget {
                     ),
                   ),
                 ),
-          body: body,
+          // body: _buildBody(),
+          body: Navigator(
+              key: navigatorKey,
+              initialRoute: '/',
+              onGenerateRoute: (RouteSettings settings) {
+                WidgetBuilder builder;
+                print('settings.name');
+                print(settings.name);
+                // switch (currentTab) {
+                switch (settings.name) {
+                  case FeedScreen.routeName:
+                    builder = (BuildContext _) => FeedScreen();
+                    break;
+                  case ProfileScreen.routeName:
+                    builder = (BuildContext _) => ProfileScreen();
+                    break;
+                  default:
+                    builder = (BuildContext _) => FeedScreen();
+                }
+                return MaterialPageRoute(builder: builder, settings: settings);
+              }),
           bottomNavigationBar: !isUserLogged
               ? null
               : BottomAppBar(
@@ -54,10 +86,19 @@ class BaseScaffold extends StatelessWidget {
                       IconButton(
                         icon: Icon(OMIcons.home),
                         onPressed: () {
-                          Navigator.pushNamed(
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   FeedScreen.routeName,
+                          // );
+
+                          Navigator.push(
                             context,
-                            FeedScreen.routeName,
+                            MaterialPageRoute(builder: (context) => FeedScreen()),
                           );
+
+                          // setState(() {
+                          //   currentTab = TabItem.feed;
+                          // });
                         },
                       ),
                       IconButton(
@@ -76,10 +117,19 @@ class BaseScaffold extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 9),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(
+                            // Navigator.pushNamed(
+                            //   context,
+                            //   ProfileScreen.routeName,
+                            // );
+
+                            Navigator.push(
                               context,
-                              ProfileScreen.routeName,
+                              MaterialPageRoute(builder: (context) => ProfileScreen()),
                             );
+
+                            setState(() {
+                              currentTab = TabItem.profile;
+                            });
                           },
                           child: CircleAvatar(
                             maxRadius: 16,

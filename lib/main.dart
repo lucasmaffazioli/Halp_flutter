@@ -3,6 +3,7 @@ import 'package:halp/models/login_model.dart';
 import 'package:halp/screens/feed/feed_screen.dart';
 import 'package:halp/screens/login/login.dart';
 import 'package:halp/misc/constants.dart';
+import 'package:halp/screens/main_screen.dart';
 import 'package:halp/screens/post/post_screen.dart';
 import 'package:halp/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
@@ -35,12 +36,13 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: mainWhite,
         ),
         routes: {
-          '/': userLoggedIn ? (context) => FeedScreen() : (context) => Login(),
+          '/': userLoggedIn ? (context) => MainScreen() : (context) => Login(),
           // '/': (context) => Login(),
           Login.routeName: (context) => Login(),
-          FeedScreen.routeName: (context) => FeedScreen(),
-          PostScreen.routeName: (context) => PostScreen(ModalRoute.of(context).settings.arguments),
-          ProfileScreen.routeName: (context) => ProfileScreen(),
+          MainScreen.routeName: (context) => MainScreen(),
+          // FeedScreen.routeName: (context) => FeedScreen(),
+          // PostScreen.routeName: (context) => PostScreen(ModalRoute.of(context).settings.arguments),
+          // ProfileScreen.routeName: (context) => ProfileScreen(),
         },
         // home: ProfileScreen(),
       ),

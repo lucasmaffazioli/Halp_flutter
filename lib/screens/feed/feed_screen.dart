@@ -67,11 +67,9 @@ class _FeedScreenState extends State<FeedScreen> {
     ).getCurrentUser();
     print('current user is ' + _currentUser);
 
-    return BaseScaffold(
-      body: ListView(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-        children: listPosts,
-      ),
+    return ListView(
+      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      children: listPosts,
     );
   }
 }
