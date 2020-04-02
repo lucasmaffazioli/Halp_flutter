@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/screens/login/login.dart';
 
 class ProfileScreen extends StatelessWidget {
