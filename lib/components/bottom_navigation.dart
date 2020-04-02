@@ -4,14 +4,14 @@ import 'package:halp/screens/main_screen.dart';
 Map<TabItem, String> tabName = {
   TabItem.feed: 'feed',
   TabItem.profile: 'profile',
-  TabItem.post: 'post',
+  TabItem.newPost: 'newPost',
   TabItem.search: 'search',
 };
 
 Map<TabItem, MaterialColor> activeTabColor = {
   TabItem.feed: Colors.red,
   TabItem.profile: Colors.green,
-  TabItem.post: Colors.green,
+  TabItem.newPost: Colors.green,
   TabItem.search: Colors.brown,
 };
 
@@ -27,7 +27,7 @@ class BottomNavigation extends StatelessWidget {
       items: [
         _buildItem(tabItem: TabItem.feed),
         _buildItem(tabItem: TabItem.search),
-        _buildItem(tabItem: TabItem.post),
+        _buildItem(tabItem: TabItem.newPost),
         _buildItem(tabItem: TabItem.profile),
       ],
       onTap: (index) => onSelectTab(

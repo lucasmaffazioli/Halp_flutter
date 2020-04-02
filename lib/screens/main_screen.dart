@@ -9,18 +9,20 @@ import 'package:halp/screens/profile/profile_screen.dart';
 enum TabItem {
   feed,
   search,
-  post,
+  newPost,
   profile,
 }
 
 Map<TabItem, String> tabRoute = {
   TabItem.feed: 'feed',
   TabItem.search: 'search',
-  TabItem.post: 'post',
+  TabItem.newPost: 'newPost',
   TabItem.profile: 'profile',
 };
 
 class MainScreen extends StatefulWidget {
+  static const routeName = '/mainScreen';
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -30,12 +32,13 @@ class _MainScreenState extends State<MainScreen> {
   Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
     TabItem.feed: GlobalKey<NavigatorState>(),
     TabItem.search: GlobalKey<NavigatorState>(),
-    TabItem.post: GlobalKey<NavigatorState>(),
+    TabItem.newPost: GlobalKey<NavigatorState>(),
     TabItem.profile: GlobalKey<NavigatorState>(),
   };
 
   void _selectTab(TabItem tabItem) {
     print('_selectTab');
+    print(_currentTab);
     print(tabItem);
     if (tabItem == _currentTab) {
       // pop to first route
@@ -53,7 +56,10 @@ class _MainScreenState extends State<MainScreen> {
 
     return WillPopScope(
       onWillPop: () async {
+        print('onWillPop');
         final isFirstRouteInCurrentTab = !await _navigatorKeys[_currentTab].currentState.maybePop();
+        print('Let system handle?');
+        print(isFirstRouteInCurrentTab);
         if (isFirstRouteInCurrentTab) {
           // if not on the 'main' tab
           if (_currentTab != TabItem.feed) {
@@ -70,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.feed),
           _buildOffstageNavigator(TabItem.search),
-          _buildOffstageNavigator(TabItem.post),
+          _buildOffstageNavigator(TabItem.newPost),
           _buildOffstageNavigator(TabItem.profile),
           // _buildOffstageNavigator(TabItem.profile),
         ]),
@@ -112,14 +118,16 @@ class _MainScreenState extends State<MainScreen> {
     print('generateRoute');
     print(settings);
     switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => FeedScreen());
+      // case '/':
+      //   return MaterialPageRoute(builder: (_) => FeedScreen());
       case '/feed':
         return MaterialPageRoute(builder: (_) => FeedScreen());
       case '/profile':
         return MaterialPageRoute(builder: (_) => ProfileScreen());
       case '/post':
         return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+      // case '/newPost':
+      //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
