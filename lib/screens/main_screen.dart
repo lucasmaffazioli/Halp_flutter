@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:halp/components/bottom_navigation.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:halp/screens/feed/feed_screen.dart';
+import 'package:halp/screens/post/post_screen.dart';
 import 'package:halp/screens/profile/profile_screen.dart';
 
 enum TabItem {
@@ -88,19 +89,41 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  // MaterialPageRoute _routesBuilder(tabItem){
+  //   switch (tabItem) {
+  //     case TabItem.feed:
+
+  //       break;
+  //     default:
+  //   }
+  // }
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (_) => FeedScreen());
+      case '/feed':
+        return MaterialPageRoute(builder: (_) => FeedScreen());
+      case '/profile':
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
+      case '/post':
+        return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+      default:
+        return MaterialPageRoute(
+            builder: (_) => Scaffold(
+                  body: Center(child: Text('No route defined for ${settings.name}')),
+                ));
+    }
+  }
+
   Widget _buildOffstageNavigator(TabItem tabItem) {
     return Offstage(
       offstage: _currentTab != tabItem,
-      child: tabItem == TabItem.feed ? FeedScreen() : ProfileScreen(),
-      // child: Navigator(
-      //   key: _navigatorKeys[tabItem],
-      //   initialRoute: '/',
-      //   onGenerateRoute: (routeSettings) {
-      //     return MaterialPageRoute(
-      //       builder: (context) => routeBuilders[routeSettings.name](context),
-      //     );
-      //   },
-      // ),
+      // child: tabItem == TabItem.feed ? FeedScreen() : ProfileScreen(),
+      child: Navigator(
+        key: _navigatorKeys[tabItem],
+        initialRoute: '/',
+        onGenerateRoute: generateRoute,
+      ),
     );
   }
 
