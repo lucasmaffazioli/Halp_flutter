@@ -9,8 +9,9 @@ class ProfileScreen extends StatelessWidget {
     return Container(
         child: MaterialButton(
       onPressed: () {
-        // Navigator.pushNamed(context, Login.routeName);
-        Navigator.pushNamedAndRemoveUntil(context, Login.routeName, (r) => false);
+        // Navigator.pushNamedAndRemoveUntil(context, Login.routeName, (r) => false);
+        Navigator.of(context, rootNavigator: true)
+            .pushNamedAndRemoveUntil(Login.routeName, (r) => false);
       },
       child: Text('Logout'),
     ));

@@ -146,90 +146,9 @@ class _MainScreenState extends State<MainScreen> {
     return Offstage(
       offstage: _currentTab != tabItem,
       // child: tabItem == TabItem.feed ? FeedScreen() : ProfileScreen(),
-      child: Navigator(
-        key: _navigatorKeys[tabItem],
-        initialRoute: '/',
-        onGenerateRoute: (RouteSettings settings) {
-          print('generateRoute');
-          print(settings);
-
-          switch (tabItem) {
-            case TabItem.feed:
-              switch (settings.name) {
-                case '/':
-                  return MaterialPageRoute(builder: (_) => FeedScreen());
-                case '/post':
-                  return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-                default:
-                  return MaterialPageRoute(
-                    builder: (_) => Scaffold(
-                      body: Center(
-                        child: Text('No route defined for $tabItem ${settings.name}'),
-                      ),
-                    ),
-                  );
-              }
-              break;
-            case TabItem.profile:
-              switch (settings.name) {
-                case '/':
-                  return MaterialPageRoute(builder: (_) => ProfileScreen());
-                // case '/post':
-                //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-                default:
-                  return MaterialPageRoute(
-                    builder: (_) => Scaffold(
-                      body: Center(
-                        child: Text('No route defined for $tabItem ${settings.name}'),
-                      ),
-                    ),
-                  );
-              }
-              break;
-            case TabItem.search:
-              switch (settings.name) {
-                // case '/':
-                //   return MaterialPageRoute(builder: (_) => ProfileScreen());
-                // case '/post':
-                //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-                default:
-                  return MaterialPageRoute(
-                    builder: (_) => Scaffold(
-                      body: Center(
-                        child: Text('No route defined for $tabItem ${settings.name}'),
-                      ),
-                    ),
-                  );
-              }
-              break;
-            default:
-              return MaterialPageRoute(
-                builder: (_) => Scaffold(
-                  body: Center(
-                    child: Text('No route defined for $tabItem ${settings.name}'),
-                  ),
-                ),
-              );
-          }
-
-          // switch (settings.name) {
-          //   case '/':
-          //     return MaterialPageRoute(builder: (_) => FeedScreen());
-          //   case '/feed':
-          //     return MaterialPageRoute(builder: (_) => FeedScreen());
-          //   case '/profile':
-          //     return MaterialPageRoute(builder: (_) => ProfileScreen());
-          //   case '/post':
-          //     return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-          //   // case '/newPost':
-          //   //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-          //   default:
-          //     return MaterialPageRoute(
-          //         builder: (_) => Scaffold(
-          //               body: Center(child: Text('No route defined for ${settings.name}')),
-          //             ));
-          // }
-        },
+      child: MyNavigator(
+        navigatorKeys: _navigatorKeys,
+        tabItem: tabItem,
       ),
     );
   }
@@ -242,4 +161,106 @@ class _MainScreenState extends State<MainScreen> {
   //     onSelectTab: _selectTab,
   //   );
   // }
+}
+
+class MyNavigator extends StatelessWidget {
+  final TabItem tabItem;
+
+  const MyNavigator({
+    Key key,
+    @required Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys,
+    @required this.tabItem,
+  })  : _navigatorKeys = navigatorKeys,
+        super(key: key);
+
+  final Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys;
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: _navigatorKeys[tabItem],
+      initialRoute: '/',
+      onGenerateRoute: (RouteSettings settings) {
+        print('generateRoute');
+        print(settings);
+
+        switch (tabItem) {
+          case TabItem.feed:
+            switch (settings.name) {
+              case '/':
+                return MaterialPageRoute(builder: (_) => FeedScreen());
+              case '/post':
+                return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+              default:
+                return MaterialPageRoute(
+                  builder: (_) => Scaffold(
+                    body: Center(
+                      child: Text('No route defined for $tabItem ${settings.name}'),
+                    ),
+                  ),
+                );
+            }
+            break;
+          case TabItem.profile:
+            switch (settings.name) {
+              case '/':
+                return MaterialPageRoute(builder: (_) => ProfileScreen());
+              // case '/post':
+              //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+              default:
+                return MaterialPageRoute(
+                  builder: (_) => Scaffold(
+                    body: Center(
+                      child: Text('No route defined for $tabItem ${settings.name}'),
+                    ),
+                  ),
+                );
+            }
+            break;
+          case TabItem.search:
+            switch (settings.name) {
+              // case '/':
+              //   return MaterialPageRoute(builder: (_) => ProfileScreen());
+              // case '/post':
+              //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+              default:
+                return MaterialPageRoute(
+                  builder: (_) => Scaffold(
+                    body: Center(
+                      child: Text('No route defined for $tabItem ${settings.name}'),
+                    ),
+                  ),
+                );
+            }
+            break;
+          default:
+            return MaterialPageRoute(
+              builder: (_) => Scaffold(
+                body: Center(
+                  child: Text('No route defined for $tabItem ${settings.name}'),
+                ),
+              ),
+            );
+        }
+
+        // switch (settings.name) {
+        //   case '/':
+        //     return MaterialPageRoute(builder: (_) => FeedScreen());
+        //   case '/feed':
+        //     return MaterialPageRoute(builder: (_) => FeedScreen());
+        //   case '/profile':
+        //     return MaterialPageRoute(builder: (_) => ProfileScreen());
+        //   case '/post':
+        //     return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+        //   // case '/newPost':
+        //   //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+        //   default:
+        //     return MaterialPageRoute(
+        //         builder: (_) => Scaffold(
+        //               body: Center(child: Text('No route defined for ${settings.name}')),
+        //             ));
+        // }
+      },
+    );
+  }
 }
