@@ -19,24 +19,9 @@ class BaseScaffold extends StatefulWidget {
 
 class _BaseScaffoldState extends State<BaseScaffold> {
   TabItem currentTab = TabItem.feed;
+  GlobalKey<NavigatorState> navigatorKey;
 
-  Widget _buildBody() {
-    switch (currentTab) {
-      case TabItem.feed:
-        {
-          return FeedScreen();
-        }
-        break;
-
-      case TabItem.profile:
-        {
-          return ProfileScreen();
-        }
-        break;
-      default:
-        return FeedScreen();
-    }
-  }
+  Widget _buildBody() {}
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +55,27 @@ class _BaseScaffoldState extends State<BaseScaffold> {
                     ),
                   ),
                 ),
-          body: _buildBody(),
+          // body: _buildBody(),
+          body: Navigator(
+              key: navigatorKey,
+              initialRoute: '/',
+              onGenerateRoute: (RouteSettings settings) {
+                WidgetBuilder builder;
+                print('settings.name');
+                print(settings.name);
+                // switch (currentTab) {
+                switch (settings.name) {
+                  case FeedScreen.routeName:
+                    builder = (BuildContext _) => FeedScreen();
+                    break;
+                  case ProfileScreen.routeName:
+                    builder = (BuildContext _) => ProfileScreen();
+                    break;
+                  default:
+                    builder = (BuildContext _) => FeedScreen();
+                }
+                return MaterialPageRoute(builder: builder, settings: settings);
+              }),
           bottomNavigationBar: !isUserLogged
               ? null
               : BottomAppBar(
@@ -85,9 +90,15 @@ class _BaseScaffoldState extends State<BaseScaffold> {
                           //   context,
                           //   FeedScreen.routeName,
                           // );
-                          setState(() {
-                            currentTab = TabItem.feed;
-                          });
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FeedScreen()),
+                          );
+
+                          // setState(() {
+                          //   currentTab = TabItem.feed;
+                          // });
                         },
                       ),
                       IconButton(
@@ -110,6 +121,12 @@ class _BaseScaffoldState extends State<BaseScaffold> {
                             //   context,
                             //   ProfileScreen.routeName,
                             // );
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileScreen()),
+                            );
+
                             setState(() {
                               currentTab = TabItem.profile;
                             });

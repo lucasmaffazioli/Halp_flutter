@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/components/image_formatter.dart';
 import 'package:halp/components/tag.dart';
 import 'package:halp/misc/constants.dart';
@@ -90,6 +88,8 @@ class _PostScreenState extends State<PostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('PostScreen');
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: mainWhite,
     ));
