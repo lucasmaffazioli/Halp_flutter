@@ -13,6 +13,13 @@ enum TabItem {
   profile,
 }
 
+Map<TabItem, String> tabRoute = {
+  TabItem.feed: 'feed',
+  TabItem.search: 'search',
+  TabItem.post: 'post',
+  TabItem.profile: 'profile',
+};
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -28,6 +35,8 @@ class _MainScreenState extends State<MainScreen> {
   };
 
   void _selectTab(TabItem tabItem) {
+    print('_selectTab');
+    print(tabItem);
     if (tabItem == _currentTab) {
       // pop to first route
       _navigatorKeys[tabItem].currentState.popUntil((route) => route.isFirst);
@@ -60,6 +69,8 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.feed),
+          _buildOffstageNavigator(TabItem.search),
+          _buildOffstageNavigator(TabItem.post),
           _buildOffstageNavigator(TabItem.profile),
           // _buildOffstageNavigator(TabItem.profile),
         ]),
@@ -98,6 +109,8 @@ class _MainScreenState extends State<MainScreen> {
   //   }
   // }
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    print('generateRoute');
+    print(settings);
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => FeedScreen());
@@ -116,12 +129,18 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _buildOffstageNavigator(TabItem tabItem) {
+    print('_buildOffstageNavigator');
+    print(_currentTab);
+    print(tabItem);
+    print('Should hide');
+    print(_currentTab != tabItem);
+
     return Offstage(
       offstage: _currentTab != tabItem,
       // child: tabItem == TabItem.feed ? FeedScreen() : ProfileScreen(),
       child: Navigator(
         key: _navigatorKeys[tabItem],
-        initialRoute: '/',
+        initialRoute: '/' + tabRoute[tabItem],
         onGenerateRoute: generateRoute,
       ),
     );
