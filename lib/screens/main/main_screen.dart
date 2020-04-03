@@ -1,8 +1,13 @@
+//
+// A greate deal of this code is from the nested_navigation project:
+// https://medium.com/coding-with-flutter/flutter-case-study-multiple-navigators-with-bottomnavigationbar-90eb6caa6dbf
+// https://github.com/bizz84/nested-navigation-demo-flutter
+//
+
 import 'package:flutter/material.dart';
-// import 'package:halp/components/base_scaffold.dart';
-import 'package:halp/components/bottom_navigation.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:halp/screens/feed/feed_screen.dart';
+import 'package:halp/screens/main/bottom_navigation.dart';
 import 'package:halp/screens/post/post_screen.dart';
 import 'package:halp/screens/profile/profile_screen.dart';
 
@@ -106,35 +111,27 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  // MaterialPageRoute _routesBuilder(tabItem){
-  //   switch (tabItem) {
-  //     case TabItem.feed:
-
-  //       break;
+  // static Route<dynamic> generateRoute(RouteSettings settings) {
+  //   print('generateRoute');
+  //   print(settings);
+  //   switch (settings.name) {
+  //     case '/':
+  //       return MaterialPageRoute(builder: (_) => FeedScreen());
+  //     case '/feed':
+  //       return MaterialPageRoute(builder: (_) => FeedScreen());
+  //     case '/profile':
+  //       return MaterialPageRoute(builder: (_) => ProfileScreen());
+  //     case '/post':
+  //       return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
+  //     // case '/newPost':
+  //     //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
   //     default:
+  //       return MaterialPageRoute(
+  //           builder: (_) => Scaffold(
+  //                 body: Center(child: Text('No route defined for ${settings.name}')),
+  //               ));
   //   }
   // }
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    print('generateRoute');
-    print(settings);
-    switch (settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => FeedScreen());
-      case '/feed':
-        return MaterialPageRoute(builder: (_) => FeedScreen());
-      case '/profile':
-        return MaterialPageRoute(builder: (_) => ProfileScreen());
-      case '/post':
-        return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-      // case '/newPost':
-      //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-      default:
-        return MaterialPageRoute(
-            builder: (_) => Scaffold(
-                  body: Center(child: Text('No route defined for ${settings.name}')),
-                ));
-    }
-  }
 
   Widget _buildOffstageNavigator(TabItem tabItem) {
     print('_buildOffstageNavigator');
@@ -146,7 +143,7 @@ class _MainScreenState extends State<MainScreen> {
     return Offstage(
       offstage: _currentTab != tabItem,
       // child: tabItem == TabItem.feed ? FeedScreen() : ProfileScreen(),
-      child: MyNavigator(
+      child: NestedNavigator(
         navigatorKeys: _navigatorKeys,
         tabItem: tabItem,
       ),
@@ -163,10 +160,10 @@ class _MainScreenState extends State<MainScreen> {
   // }
 }
 
-class MyNavigator extends StatelessWidget {
+class NestedNavigator extends StatelessWidget {
   final TabItem tabItem;
 
-  const MyNavigator({
+  const NestedNavigator({
     Key key,
     @required Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys,
     @required this.tabItem,
@@ -205,8 +202,6 @@ class MyNavigator extends StatelessWidget {
             switch (settings.name) {
               case '/':
                 return MaterialPageRoute(builder: (_) => ProfileScreen());
-              // case '/post':
-              //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
               default:
                 return MaterialPageRoute(
                   builder: (_) => Scaffold(
@@ -242,24 +237,6 @@ class MyNavigator extends StatelessWidget {
               ),
             );
         }
-
-        // switch (settings.name) {
-        //   case '/':
-        //     return MaterialPageRoute(builder: (_) => FeedScreen());
-        //   case '/feed':
-        //     return MaterialPageRoute(builder: (_) => FeedScreen());
-        //   case '/profile':
-        //     return MaterialPageRoute(builder: (_) => ProfileScreen());
-        //   case '/post':
-        //     return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-        //   // case '/newPost':
-        //   //   return MaterialPageRoute(builder: (_) => PostScreen(settings.arguments));
-        //   default:
-        //     return MaterialPageRoute(
-        //         builder: (_) => Scaffold(
-        //               body: Center(child: Text('No route defined for ${settings.name}')),
-        //             ));
-        // }
       },
     );
   }

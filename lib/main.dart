@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:halp/models/login_model.dart';
-import 'package:halp/screens/feed/feed_screen.dart';
 import 'package:halp/screens/login/login.dart';
 import 'package:halp/misc/constants.dart';
-import 'package:halp/screens/main_screen.dart';
-import 'package:halp/screens/post/post_screen.dart';
-import 'package:halp/screens/profile/profile_screen.dart';
+import 'package:halp/screens/main/main_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());

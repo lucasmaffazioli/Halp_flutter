@@ -4,7 +4,7 @@ import 'package:halp/components/big_button.dart';
 import 'package:halp/misc/constants.dart';
 import 'package:halp/screens/login/components/input_register.dart';
 import 'package:halp/screens/login/components/waves_separator.dart';
-import 'package:halp/screens/main_screen.dart';
+import 'package:halp/screens/main/main_screen.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {

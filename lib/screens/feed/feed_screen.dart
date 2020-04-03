@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:halp/components/base_scaffold.dart';
 import 'package:halp/models/posts_header_model.dart';
 import 'package:halp/screens/feed/components/feed_post.dart';
 import 'package:halp/models/login_model.dart';
