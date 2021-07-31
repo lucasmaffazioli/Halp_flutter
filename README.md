@@ -1,11 +1,12 @@
-# halp
+# Halp.
 
-Things that need to be done and */5 of priority:
+### Flutter app:
+<video height="600" muted autoplay controls>
+    <source src="assets/videos/halp_preview.mp4" type="video/mp4">
+</video>
 
-<!-- - Create models of data *5 -->
-- Make bottn navigation decent *5
-- View other profiles *4
-- Record video *1
-- Backend of login/signup *3
-- Create posts *0
-- View and edit own profile *4
+---
+### Adobe XD demo:
+<video height="600" muted autoplay controls>
+    <source src="assets/videos/halp_preview.mp4" type="video/mp4">
+</video>
