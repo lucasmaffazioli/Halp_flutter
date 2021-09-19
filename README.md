@@ -1,5 +1,9 @@
 # Halp.
 
+Concept and demo app for a social network for shareable knowledge, a blend of StackOverflow and TikTok.
+
+Technologies used: Flutter, Adobe XD
+
 ### Flutter app:
 
 https://user-images.githubusercontent.com/12513049/127749821-8fd5298b-1148-49e9-88cf-eceb48d1c46e.mp4
